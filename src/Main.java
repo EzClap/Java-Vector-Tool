@@ -5,7 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 public class Main extends JPanel {
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args) throws Exception {
         JFrame f = new JFrame("Draw a Red Line");
         f.setSize(300, 300);
         f.setLocation(300, 300);
