@@ -1,37 +1,37 @@
 package Application;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class MainGUI extends JFrame implements ActionListener, Runnable{
+public class GUI extends JFrame implements ActionListener, Runnable{
     public static String shape = "";
     public static Color selectedColour = Color.BLACK;
     public static ArrayList<Paint> app = new ArrayList<Paint>();
     private JPanel pnlCanvas, pnlTools, pnlColours;
     private JButton btnPlot, btnLine, btnRectangle, btnEllipse, btnPolygon;
 
-    public MainGUI(String title) throws HeadlessException {
+    public GUI(String title) throws HeadlessException {
         super(title);
     }
 
     private void createGUI() {
         setSize(900, 600);
         setLayout(new BorderLayout());
-        createCanvas();
-        createToolPanel();
-        createColourPanel();
-
         this.setJMenuBar(createMenuBar());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-    }
-    private void createCanvas(){
-        pnlCanvas = createPanel(Color.WHITE);
-        getContentPane().add(pnlCanvas,BorderLayout.CENTER);
+        pnlCanvas = new JPanel();
+        pnlCanvas.setBorder(new EmptyBorder(3, 3, 3, 3));
+        pnlCanvas.setLayout(new BorderLayout(0, 0));
+        pnlCanvas.setBackground(Color.WHITE);
+        setContentPane(pnlCanvas);
+        createToolPanel();
+        createColourPanel();
     }
 
     private void createToolPanel(){
@@ -62,7 +62,37 @@ public class MainGUI extends JFrame implements ActionListener, Runnable{
     private void createColourPanel(){
         pnlColours = createPanel(Color.LIGHT_GRAY);
         getContentPane().add(pnlColours,BorderLayout.SOUTH);
+        Dimension btnColourSize = new Dimension(50,30);
 
+        JButton btnRed = new JButton();
+        btnRed.setPreferredSize(btnColourSize);
+        btnRed.setBackground(Color.RED);
+        btnRed.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                selectedColour = Color.RED;
+            }
+        });
+        pnlColours.add(btnRed);
+
+        JButton btnBlue = new JButton();
+        btnBlue.setPreferredSize(btnColourSize);
+        btnBlue.setBackground(Color.BLUE);
+        btnBlue.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                selectedColour = Color.BLUE;
+            }
+        });
+        pnlColours.add(btnBlue);
+
+        JButton btnGreen = new JButton();
+        btnGreen.setPreferredSize(btnColourSize);
+        btnGreen.setBackground(Color.GREEN);
+        btnGreen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                selectedColour = Color.GREEN;
+            }
+        });
+        pnlColours.add(btnGreen);
 
     }
 
@@ -80,22 +110,22 @@ public class MainGUI extends JFrame implements ActionListener, Runnable{
         menuBar.add(mFile);
             miNew = new JMenuItem("New",
                     new ImageIcon("images/newproject.png"));
-            miNew.addActionListener(new ActionListener(){
-                public void actionPerformed(ActionEvent a){
-                    shape = "";
-                    OpenFile.image = null;
-                    app.clear();
-                    repaint();
-                }
-            });
+//            miNew.addActionListener(new ActionListener(){
+//                public void actionPerformed(ActionEvent a){
+//                    shape = "";
+//                    OpenFile.image = null;
+//                    app.clear();
+//                    repaint();
+//                }
+//            });
             mFile.add(miNew);
 
-            miLoad = new JMenuItem("Load Project...";
+            miLoad = new JMenuItem("Load Project...");
                     //new ImageIcon("../images/load.png"));
             miLoad.setMnemonic(KeyEvent.VK_L);
             mFile.add(miLoad);
 
-            miSave = new JMenuItem("Save Project";
+            miSave = new JMenuItem("Save Project");
                     //new ImageIcon("../images/load.png"));
             miSave.setMnemonic(KeyEvent.VK_S);
             mFile.add(miSave);
@@ -168,9 +198,6 @@ public class MainGUI extends JFrame implements ActionListener, Runnable{
 
     @Override
     public void actionPerformed (ActionEvent e){
-        if ( e.getSource() == btnPlot){
-            shapes.Plot;
-        }
     }
 
     @Override
@@ -179,7 +206,7 @@ public class MainGUI extends JFrame implements ActionListener, Runnable{
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new MainGUI("Vector Design Tool"));
+        SwingUtilities.invokeLater(new GUI("Vector Design Tool"));
 
     }
 
