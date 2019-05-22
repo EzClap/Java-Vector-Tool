@@ -9,14 +9,17 @@ import java.util.ArrayList;
 
 public class Polygon extends JPanel {
 
-    // NO ERRORS BUT DOESN'T WORK
-
-    private ArrayList<Integer> pointX = new ArrayList<Integer>();
-    private ArrayList<Integer> pointY = new ArrayList<Integer>();
-    private ArrayList<ArrayList<Integer>> polygons = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<int[]> polygons = new ArrayList<>();
+    private ArrayList<Integer> numPolyPoints = new ArrayList<>();
     private int pointIndex = 0;
+    private int[] x;
+    private int[] y;
+    private boolean done = false;
     private Color penColor;
     private Color fillColor;
+
+    private ArrayList<Point> pointStart = new ArrayList<>();
+    private ArrayList<Point> pointEnd = new ArrayList<>();
 
     public Polygon(Color penColor, Color fillColor) {
         this.penColor = penColor;
@@ -26,19 +29,28 @@ public class Polygon extends JPanel {
 
     public void paint(Graphics g) {
         super.paint(g);
-        for (int i = 0; i < polygons.size(); i+=2) {
-            int size = polygons.get(i).size();
-            int[] x = new int[size];
-            int[] y = new int[size];
-            for (int j = 0; j < size; j++) {
-                x[j] = polygons.get(i).get(j);
-                y[j] = polygons.get(i++).get(j);
-            }
 
-            g.setColor(fillColor);
-            g.fillPolygon(x, y, size);
-            g.setColor(penColor);
-            g.drawPolygon(x, y, size);
+        if (done) {
+            for (int i = 0; i < polygons.size(); i = i + 2) {
+                int yIndex = i + 1;
+                int[] xp = polygons.get(i);
+                int[] yp = polygons.get(yIndex);
+
+                g.setColor(fillColor);
+                g.fillPolygon(xp, yp, numPolyPoints.get(i));
+                g.setColor(penColor);
+                g.drawPolygon(xp, yp, numPolyPoints.get(i));
+            }
+        }
+
+        if (!pointStart.isEmpty()) {
+            for (Point point : pointStart) {
+                int index = pointStart.indexOf(point);
+                g.setColor(penColor);
+                g.drawLine(point.x, point.y, pointEnd.get(index).x, pointEnd.get(index).y);
+            }
+        } else {
+            done = true;
         }
     }
 
@@ -46,26 +58,31 @@ public class Polygon extends JPanel {
         addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
-                pointX.add(pointIndex, e.getPoint().x);
-                pointY.add(pointIndex, e.getPoint().y);
+                pointStart.add(e.getPoint());
+                pointIndex = pointStart.indexOf(e.getPoint());
 
                 if (pointIndex > 0) {
-                    int xDiff = pointX.get(pointIndex) - pointX.get(0);
-                    int yDiff = pointY.get(pointIndex) - pointY.get(0);
-                    if (xDiff <= 10 && xDiff >= -10 && yDiff <= 10 && yDiff >= -10) {
-                        polygons.add(pointX);
-                        polygons.add(pointY);
-                        pointX.clear();
-                        pointY.clear();
+                    int xDiff = pointStart.get(pointIndex).x - pointStart.get(0).x;
+                    int yDiff = pointStart.get(pointIndex).y - pointStart.get(0).y;
+
+                    if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
+                        int size = pointStart.size();
+                        numPolyPoints.add(size);
+                        numPolyPoints.add(0);
+                        x = new int[size];
+                        y = new int[size];
+                        for (int i = 0; i < size; i++) {
+                            x[i] = pointStart.get(i).x;
+                            y[i] = pointStart.get(i).y;
+                        }
+                        polygons.add(x);
+                        polygons.add(y);
+                        pointStart.clear();
+                        pointEnd.clear();
                         pointIndex = 0;
-                    } else {
-                        pointIndex++;
                     }
-                } else {
-                    pointIndex++;
                 }
                 repaint();
-
             }
 
             public void mouseReleased(MouseEvent e) {
@@ -73,22 +90,23 @@ public class Polygon extends JPanel {
 //                pointY.add(pointIndex, e.getPoint().y);
 //                pointIndex++
             }
-
         });
 
         addMouseMotionListener(new MouseMotionAdapter() {
 
             public void mouseMoved(MouseEvent e) {
-//                pointX.add(pointIndex, e.getPoint().x);
-//                pointY.add(pointIndex, e.getPoint().y);
-//                repaint();
+                pointEnd.add(pointIndex, e.getPoint());
+                repaint();
             }
 
             public void mouseDragged(MouseEvent e) {
 //                pointX.add(pointIndex, e.getPoint().x);
 //                pointY.add(pointIndex, e.getPoint().y);
 //                repaint();
+//                pointEnd.add(pointIndex, e.getPoint());
+//                repaint();
             }
         });
     }
+
 }

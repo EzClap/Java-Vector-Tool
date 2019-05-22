@@ -19,17 +19,17 @@ public class Main extends JPanel {
 //        f.add(new Rectangle(Color.BLACK, null));
 //        f.add(new Plot(Color.BLACK));
 //        f.add(new Line(Color.BLACK));
-//        f.add(new Polygon(Color.BLACK, Color.PINK));
+        f.add(new Polygon(Color.BLACK, Color.PINK));
 
-        JPanel p = new JPanel() {
-            public void paint(Graphics g) {
-                super.paint(g);
-                int[] x = new int[] {20, 50, 60, 40, 20};
-                int[] y = new int[] {20, 20, 50, 80, 20};
-                g.drawPolygon(x, y, 5);
-            }
-        };
-        f.add(p);
+//        JPanel p = new JPanel() {
+//            public void paint(Graphics g) {
+//                super.paint(g);
+//                int[] x = new int[] {20, 50, 60, 40, 20};
+//                int[] y = new int[] {20, 20, 50, 80, 20};
+//                g.drawPolygon(x, y, 5);
+//            }
+//        };
+//        f.add(p);
 
         f.setVisible(true);
 
