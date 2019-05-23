@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9a112608-86fe-4d6d-9dc2-c96bb56b9129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gui/design/MainGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/read/write/Input.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/read/write/Output.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shapes/Colors.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shapes/Ellipse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shapes/Line.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shapes/Plot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shapes/Polygon.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,6 +52,12 @@
               <item name="CAB302_Java" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CAB302_Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CAB302_Java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Canvas" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -70,7 +67,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558596791253" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1558596837008" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -110,6 +107,28 @@
       <option name="presentableId" value="Default" />
       <updated>1557650504354</updated>
     </task>
+    <task id="LOCAL-00001" summary="add adbout">
+      <created>1558596625724</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558596625724</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add adbout">
+      <created>1558596692016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1558596692016</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit app">
+      <created>1558596809577</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558596809577</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -170,6 +189,11 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
     </layout-to-restore>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add adbout" />
+    <MESSAGE value="commit app" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit app" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/read/write/Input.java">
