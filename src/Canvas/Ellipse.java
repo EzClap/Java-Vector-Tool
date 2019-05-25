@@ -30,9 +30,9 @@ public class Ellipse implements ConnectorRecEllipsePoly {
         this.color = c;
     }
     @Override
-    public void makeObject(Point startDrag, Point endDrag) {
+    public void makeObject(Point spoint, Point fpoint) {
         setLineColor(GUI.colour);
-        Ellipse2D r = new Ellipse2D.Float(Math.min(startDrag.x, endDrag.x), Math.min(startDrag.y, endDrag.y), Math.abs(startDrag.x - endDrag.x), Math.abs(startDrag.y - endDrag.y));
+        Ellipse2D r = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
         this.setElip2d(r);
     }
 

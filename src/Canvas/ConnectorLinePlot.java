@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 public interface ConnectorLinePlot extends Paint{
 
