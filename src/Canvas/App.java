@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.BasicStroke;
@@ -48,7 +48,7 @@ public class App extends JComponent {
                     Line obj = new Line();
                     obj.makeObject(spoint, p);
                     GUI.paint.add(obj);
-                } else if (GUI.shape == "Oval") {
+                } else if (GUI.shape == "Ellipse") {
                     Ellipse obj = new Ellipse();
                     obj.makeObject(spoint, p);
                     GUI.paint.add(obj);
@@ -56,7 +56,7 @@ public class App extends JComponent {
                     Plot obj = new Plot();
                     obj.makeObject(spoint, p);
                     GUI.paint.add(obj);
-                } else if (GUI.shape == "fill") {
+                }   else if (GUI.shape == "fill") {
                     for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.paint.get(i);
                         try {
@@ -79,6 +79,7 @@ public class App extends JComponent {
                 }
                 spoint = null;
                 fpoint = null;
+                System.out.println(GUI.paint.size());
                 repaint();
             }
         });
@@ -109,7 +110,7 @@ public class App extends JComponent {
                 Rectangle obj = new Rectangle();
                 obj.makeObject(spoint, fpoint);
                 obj.draw(g2);
-            } else if (GUI.shape == "Oval") {
+            } else if (GUI.shape == "Ellipse") {
                 Ellipse obj = new Ellipse();
                 obj.makeObject(spoint, fpoint);
                 obj.draw(g2);
@@ -121,7 +122,7 @@ public class App extends JComponent {
                 Line obj = new Line();
                 obj.makeObject(spoint, fpoint);
                 obj.draw(g2);
-            } else if (GUI.shape == "move") {
+            }  else if (GUI.shape == "move") {
                 if (currentPaint instanceof Rectangle) {
                     Rectangle r = (Rectangle) currentPaint;
                     if (r.contains(spoint)) {
