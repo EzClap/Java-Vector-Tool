@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import java.awt.BorderLayout;
 
@@ -25,4 +25,3 @@ public class About extends JFrame {
     }
 
 }
-
