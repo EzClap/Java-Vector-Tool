@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
