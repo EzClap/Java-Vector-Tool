@@ -36,7 +36,7 @@ public class Ellipse implements ConnectorRecEllipsePoly {
         this.setElip2d(r);
     }
 
-    public void makeOval(int x, int y, int w, int h) {
+    public void makeEllipse(int x, int y, int w, int h) {
         Ellipse2D r = new Ellipse2D.Float(x, y, w, h);
         this.setElip2d(r);
     }

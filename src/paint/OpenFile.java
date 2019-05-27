@@ -33,7 +33,7 @@ public class OpenFile extends JFrame {
                     else
                     {
                         while(t != null){
-                            String[] a = t.split(";");
+                            String[] a = t.split(" ");
                             if(a[0].equals("Rectangle")){
                                 Rectangle r = new Rectangle();
                                 r.makeRectangle(Integer.parseInt(a[1].toString()), Integer.parseInt(a[2].toString()), Integer.parseInt(a[3].toString()), Integer.parseInt(a[4].toString()));
@@ -48,7 +48,7 @@ public class OpenFile extends JFrame {
                             }
                             else if(a[0].equals("Ellipse")){
                                 Ellipse r = new Ellipse();
-                                r.makeOval(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                r.makeEllipse(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
                                 r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
                                 if(a[8].equals("null")){
                                     r.setColor(null);

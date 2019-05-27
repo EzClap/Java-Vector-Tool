@@ -28,8 +28,8 @@ public class SaveFile extends JFrame {
                     for(int i = 0; i<GUI.paint.size(); i++)
                     {
                         Paint pt = GUI.paint.get(i);
-                        //pt.writetoFile(b);\
-//                        writer.printf
+                        pt.writetoFile(b);
+//                        writer.printf;
                         b.newLine();
                     }
                     b.close();

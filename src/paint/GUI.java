@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JMenuItem;
+//import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 public class GUI extends JFrame {
@@ -32,26 +33,28 @@ public class GUI extends JFrame {
         Dimension minSize = new Dimension(600,400);
         setMinimumSize(minSize);
 
-            //Create Menu bar
+        //Create Menu bar
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         JMenu menuFile = new JMenu("File");
         menuBar.add(menuFile);
 
-            //Create 'New' menu item
+        //Create 'New' menu item
         JMenuItem menuItemNew = new JMenuItem("New");
         menuItemNew.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 shape = "";
                 OpenFile.image = null;
+                //new GUI().setVisible(true);
+
                 paint.clear();
                 repaint();
             }
         });
         menuFile.add(menuItemNew);
 
-            //Create 'Load/ menu item
+        //Create 'Load/ menu item
         JMenuItem menuItemLoad = new JMenuItem("Load");
         menuItemLoad.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
@@ -66,7 +69,7 @@ public class GUI extends JFrame {
         });
         menuFile.add(menuItemLoad);
 
-            //Create 'Save' menu item
+        //Create 'Save' menu item
         JMenuItem menuItemSave = new JMenuItem("Save");
         menuItemSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
@@ -76,7 +79,7 @@ public class GUI extends JFrame {
         });
         menuFile.add(menuItemSave);
 
-            //Create 'Exit' menu item
+        //Create 'Exit' menu item
         JMenuItem menuItemExit = new JMenuItem("Exit");
         menuItemExit.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
@@ -86,7 +89,7 @@ public class GUI extends JFrame {
         });
         menuFile.add(menuItemExit);
 
-            //Create About menu
+        //Create About menu
         Panel aboutPanel = new Panel();
         aboutPanel.setVisible(false);
         JMenu menuAbout = new JMenu("About");
@@ -97,42 +100,37 @@ public class GUI extends JFrame {
             }
         });
         menuBar.add(menuAbout);
-        //Create Undo button
-        JMenu menuUndo = new JMenu("Undo");
-        menuUndo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent a) {
-                shape = "Undo";
-
-            }
-        });
-        menuBar.add(menuUndo);
-
-        JMenuItem undo1 = new JMenuItem("undo");
-        menuUndo.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent a) {
-                shape = "Undo";
-                GUI.paint.remove(GUI.paint.size()-1);
-                System.out.println(GUI.paint.size());
-                canvas.updateUI();
-                canvas.repaint();
-        }
-    });
-        menuUndo.add(undo1);
+//        //Create Undo button
+//        JMenu menuUndo = new JMenu("Undo");
+//        menuUndo.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent a) {
+//                shape = "Undo";
+//
+//            }
+//        });
+//        menuBar.add(menuUndo);
 
 
-            //Create the canvas. Being drawn on.
+
+
+        //Create the canvas. Being drawn on.
         canvas = new JPanel();
         canvas.setBorder(new EmptyBorder(5, 5, 5, 5));
         canvas.setLayout(new BorderLayout(0, 0));
         canvas.setBackground(Color.white);
         setContentPane(canvas);
 
-            //Create the panel that contains the tool buttons
+        //Create the panel that contains the tool buttons
         JPanel panel = new JPanel();
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         panel.setBackground(Color.LIGHT_GRAY);
         canvas.add(panel, BorderLayout.WEST);
+
+        JPanel toolPanel = new JPanel();
+        toolPanel.setLayout(layout);
+        toolPanel.setBackground(Color.LIGHT_GRAY);
+        canvas.add(toolPanel, BorderLayout.EAST);
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.NONE;
@@ -143,7 +141,7 @@ public class GUI extends JFrame {
 
 
         //addToPanel(panel, btnUndo, constraints,0,0,2,1);
-            //Create plot button
+        //Create plot button
         JButton btnPoint = new JButton("Plot");
         btnPoint.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
@@ -152,7 +150,7 @@ public class GUI extends JFrame {
         });
         addToPanel(panel, btnPoint, constraints, 0,1,2,1);
 
-            //Create Line button
+        //Create Line button
         JButton btnLine = new JButton("Line");
         btnLine.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
@@ -186,7 +184,22 @@ public class GUI extends JFrame {
                 shape = "Polygon";
             }
         }));
+        addToPanel(panel,btnPolygon, constraints,0,5,2,1);
 
+
+        JButton undo = new JButton("undo");
+        //UndoManager undoManager = new UndoManager();
+
+        undo.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent a) {
+                shape = "Undo";
+                GUI.paint.remove(GUI.paint.size()-1);
+                System.out.println(GUI.paint.size());
+                canvas.updateUI();
+                canvas.repaint();
+            }
+        });
+        addToPanel(toolPanel,undo,constraints,0,0,2,1);
         //Create fill button
         JButton btnFill = new JButton("Fillcolor");
         btnFill.addActionListener(new ActionListener() {
@@ -194,7 +207,7 @@ public class GUI extends JFrame {
                 shape = "fill";
             }
         });
-        addToPanel(panel, btnFill, constraints, 0,5,2,1);
+        addToPanel(toolPanel, btnFill, constraints, 0,1,2,1);
 
         //create move button
         JButton btnMove = new JButton("Move");
@@ -203,7 +216,7 @@ public class GUI extends JFrame {
                 shape = "move";
             }
         });
-        addToPanel(panel, btnMove, constraints, 0,6,2,1);
+        addToPanel(toolPanel, btnMove, constraints, 0,2,2,1);
 
         //create delete button
         JButton btnDelete = new JButton("Delete");
@@ -212,7 +225,7 @@ public class GUI extends JFrame {
                 shape = "Delete";
             }
         });
-        addToPanel(panel, btnDelete, constraints, 0,7,2,1);
+        addToPanel(toolPanel, btnDelete, constraints, 0,3,2,1);
 
         //create colour palette button
         JButton btnColourPalette = new JButton("Colour Palette");
@@ -222,7 +235,7 @@ public class GUI extends JFrame {
                 new ColourPalette();
             }
         });
-        addToPanel(panel, btnColourPalette, constraints,0,8,2,1);
+        addToPanel(toolPanel, btnColourPalette, constraints,0,4,2,1);
 
         //create panel containing colours
         JPanel pnlColour = new JPanel();
@@ -230,7 +243,8 @@ public class GUI extends JFrame {
         pnlColour.setSize(20, getHeight());
         canvas.add(pnlColour, BorderLayout.SOUTH);
 
-            //add red to colour panel
+
+        //add red to colour panel
         JButton btnRed = new JButton();
         btnRed.setText("Red");
         btnRed.setBackground(Color.RED);
@@ -241,7 +255,7 @@ public class GUI extends JFrame {
         });
         pnlColour.add(btnRed);
 
-            //add blue to colour panel
+        //add blue to colour panel
         JButton btnBlue = new JButton();
         btnBlue.setText("Blue");
         btnBlue.setBackground(Color.BLUE);
@@ -252,7 +266,7 @@ public class GUI extends JFrame {
         });
         pnlColour.add(btnBlue);
 
-            //add green to colour panel
+        //add green to colour panel
         JButton btnGreen = new JButton();
         btnGreen.setText("Green");
         btnGreen.setBackground(Color.GREEN);
@@ -263,7 +277,7 @@ public class GUI extends JFrame {
         });
         pnlColour.add(btnGreen);
 
-            //add purple to colour panel
+        //add purple to colour panel
         JButton btnPurple = new JButton();
         btnPurple.setText("Purple");
         btnPurple.setBackground(Color.MAGENTA);
@@ -274,7 +288,7 @@ public class GUI extends JFrame {
         });
         pnlColour.add(btnPurple);
 
-            //add gray to colour panel
+        //add gray to colour panel
         JButton btnGray = new JButton();
         btnGray.setText("Gray");
         btnGray.setBackground(Color.DARK_GRAY);
