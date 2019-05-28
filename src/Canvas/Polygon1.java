@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 
 import java.awt.Polygon;
 import java.awt.*;

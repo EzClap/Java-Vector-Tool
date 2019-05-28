@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 import java.awt.*;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
