@@ -1,5 +1,7 @@
-package Canvas;
-import java.awt.*;
+package paint;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.BasicStroke;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -13,12 +15,13 @@ public class App extends JComponent {
 
     private ArrayList<Point> polyPoint = new ArrayList<>();
     private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private int[] polyX;
-    private int[] polyY;
+    private ArrayList <Integer> polyX;
+    private ArrayList <Integer> polyY;
     private int polyIndex = 0;
 
     public App() {
         this.addMouseListener(new MouseAdapter() {
+
             public void mousePressed(MouseEvent e) {
                 spoint = new Point(e.getX(), e.getY());
                 fpoint = spoint;
@@ -50,16 +53,13 @@ public class App extends JComponent {
 
                         if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
                             int size = polyPoint.size();
-                            polyX = new int[size];
-                            polyY = new int[size];
                             for (int i = 0; i < size; i++) {
-                                polyX[i] = polyPoint.get(i).x;
-                                polyY[i] = polyPoint.get(i).y;
+                                polyX.set(i, polyPoint.get(i).x);
+                                polyY.set(i, polyPoint.get(i).y);
                             }
                             polyPoint.clear();
                             polyIndex = 0;
                             polyPointEnd.clear();
-//                            polyLine.clear();
 
                             Polygon obj = new Polygon();
                             obj.makeObject(polyX, polyY);
@@ -69,6 +69,7 @@ public class App extends JComponent {
                     }
                 }
             }
+
 
             public void mouseReleased(MouseEvent e) {
                 Point p = new Point(e.getX(), e.getY());
@@ -213,17 +214,17 @@ public class App extends JComponent {
                 } else if (currentPaint instanceof Polygon) {
                     Polygon polygon = (Polygon) currentPaint;
                     if (polygon.contains(spoint)) {
-                        if(polygon.getColor() == null){
+                        if (polygon.getColor() == null) {
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
-                        }
-                        else{
+                        } else {
                             g2.getGraphicAdapter().setColor(polygon.getColor());
                             g2.getGraphicAdapter().fillPolygon(polygon.getPolygon());
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
                         }
                     }
+
                 }
             }
         }
