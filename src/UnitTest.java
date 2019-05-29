@@ -1,6 +1,6 @@
 
 import org.junit.jupiter.api.*;
-import paint.*;
+import Canvas.*;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
