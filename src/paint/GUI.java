@@ -16,7 +16,9 @@ public class GUI extends JFrame {
     public static String shape = "Plot";
     public static Color colour = Color.BLACK;
     public static ArrayList<Paint> objects = new ArrayList<Paint>();
-    private JPanel canvas;
+    public static JPanel canvas;
+    public static JPanel app;
+
     public static GUI f;
 
     public static void main(String[] args)
@@ -31,6 +33,7 @@ public class GUI extends JFrame {
     }
 
     public void createGUI(){
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Vector Graphic Designer");
         setSize(900, 600);
@@ -119,27 +122,42 @@ public class GUI extends JFrame {
 //        });
 //        menuBar.add(menuUndo);
 
+        app = new JPanel();
+        app.setSize(450,450);
+        app.setBorder(new EmptyBorder(0, 0, 0, 0));
+        app.setLayout(new BorderLayout(0, 0));
 
-
-
+        GridBagLayout layout = new GridBagLayout();
         //Create the canvas. Being drawn on.
         canvas = new JPanel();
-        canvas.setBorder(new EmptyBorder(5, 5, 5, 5));
+        setContentPane(app);
+        canvas.setSize(450,450);
+        canvas.setBounds(40,40,450,450);
+        canvas.setBorder(new EmptyBorder(0, 0, 0, 0));
         canvas.setLayout(new BorderLayout(0, 0));
         canvas.setBackground(Color.white);
-        setContentPane(canvas);
+        //setContentPane(canvas);
+        app.add(canvas, BorderLayout.CENTER);
 
         //Create the panel that contains the tool buttons
+
+
+
         JPanel panel = new JPanel();
-        GridBagLayout layout = new GridBagLayout();
+
+
         panel.setLayout(layout);
+
         panel.setBackground(Color.LIGHT_GRAY);
-        canvas.add(panel, BorderLayout.WEST);
+
+        app.add(panel, BorderLayout.WEST);
+        //canvas.add(canvas,BorderLayout.CENTER);
 
         JPanel toolPanel = new JPanel();
         toolPanel.setLayout(layout);
         toolPanel.setBackground(Color.LIGHT_GRAY);
-        canvas.add(toolPanel, BorderLayout.EAST);
+        app.add(toolPanel, BorderLayout.EAST);
+
 
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.NONE;
@@ -271,7 +289,7 @@ public class GUI extends JFrame {
         JPanel pnlColour = new JPanel();
         pnlColour.setBackground(Color.LIGHT_GRAY);
         pnlColour.setSize(20, getHeight());
-        canvas.add(pnlColour, BorderLayout.SOUTH);
+        app.add(pnlColour, BorderLayout.SOUTH);
 
 
         //add red to colour panel
@@ -363,7 +381,7 @@ public class GUI extends JFrame {
         pnlColour.add(btnYellow);
 
         //Adding the canvas to the application
-        canvas.add(new App(), BorderLayout.CENTER);
+        canvas.add(new App());
         validate();
     }
 

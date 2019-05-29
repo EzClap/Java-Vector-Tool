@@ -11,6 +11,7 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     private Ellipse2D elip2d;
     private Color linecolor = null;
     private Color color = null;
+    double x1, x2, y1, y2;
 
     public Ellipse() {
     }
@@ -31,15 +32,15 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     }
     @Override
     public void makeObject(Point spoint, Point fpoint) {
+        x1 = spoint.x;
+        y1 = spoint.y;
+        x2 = fpoint.x;
+        y2 = fpoint.y;
         setLineColor(GUI.colour);
         Ellipse2D r = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
         this.setElip2d(r);
     }
 
-    public void makeEllipse(int x, int y, int w, int h) {
-        Ellipse2D r = new Ellipse2D.Float(x, y, w, h);
-        this.setElip2d(r);
-    }
 
     @Override
     public void draw(GraphicsAdapter g) {
@@ -70,14 +71,44 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     @Override
     public void writetoFile(BufferedWriter b){
         try {
-            b.write(getClass().getSimpleName() + " ");
-            b.write((int)getElip2d().getX() + " " + (int)getElip2d().getY() + " " + (int)getElip2d().getWidth() + " " + (int)getElip2d().getHeight() + " ");
-            b.write(getLineColor().getRed() + " " +getLineColor().getGreen() + " " + getLineColor().getBlue() +" ");
-            if(getColor()==null){
-                b.write("null" + " " +"null" +" " + "null");
+            if (getLineColor().getRed()<17 ){
+                b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
             }else{
-                b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
+                b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
             }
+            if (getLineColor().getGreen() <17){
+                b.write("0" + Integer.toHexString(getLineColor().getGreen()));
+            }else{
+                b.write(Integer.toHexString(getLineColor().getGreen()));
+            }
+            if (getLineColor().getBlue()<17){
+                b.write("0" + Integer.toHexString(getLineColor().getBlue())+"\n");
+            }else{
+                b.write(Integer.toHexString(getLineColor().getBlue())+"\n");
+            }
+
+
+            if(getColor()==null){
+                b.write("FILL OFF\n");
+            }else{
+                if (getColor().getRed()<17 ){
+                    b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+                }else{
+                    b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                }
+                if (getColor().getGreen() <17){
+                    b.write("0" + Integer.toHexString(getColor().getGreen()));
+                }else{
+                    b.write(Integer.toHexString(getColor().getGreen()));
+                }
+                if (getColor().getBlue()<17){
+                    b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
+                }else{
+                    b.write(Integer.toHexString(getColor().getBlue())+"\n");
+                }
+            }
+            b.write(getClass().getSimpleName() + " ");
+            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/GUI.canvas.getWidth()) + " " + (double)(y2/GUI.canvas.getHeight()) );
         } catch (IOException e) {
             e.printStackTrace();
         }
