@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.BasicStroke;
@@ -14,6 +14,7 @@ public class App extends JComponent {
 
     public App() {
         this.addMouseListener(new MouseAdapter() {
+
             public void mousePressed(MouseEvent e) {
                 spoint = new Point(e.getX(), e.getY());
                 fpoint = spoint;
@@ -44,6 +45,7 @@ public class App extends JComponent {
                     Rectangle obj = new Rectangle();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
+
                 } else if (GUI.shape == "Line") {
                     Line obj = new Line();
                     obj.makeObject(spoint, p);

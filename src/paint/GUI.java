@@ -1,15 +1,10 @@
-package Canvas;
+package paint;
 import java.awt.*;
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.JMenuBar;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JMenu;
-import javax.swing.JPanel;
-import javax.swing.JMenuItem;
 //import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
@@ -26,13 +21,16 @@ public class GUI extends JFrame {
 
     public static void main(String[] args)
     {
-        ArrayList<Paint> paint = new ArrayList<Paint>();
-        f.objects = paint;
+        //f.objects = paint;
         f = new GUI();
         f.setVisible(true);
     }
 
     public GUI() {
+        createGUI();
+    }
+
+    public void createGUI(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Vector Graphic Designer");
         setSize(900, 600);
@@ -52,8 +50,9 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 shape = "";
                 OpenFile.image = null;
+                paint.GUI g = new paint.GUI();
+                g.setVisible(true);
 
-                //Canvas.GUI g = new Canvas.GUI();
                 //g.setVisible(true);
                 objects.clear();
                 //g.objects = new ArrayList<Paint> ();
@@ -69,8 +68,9 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 shape ="Open";
                 try {
-                    GUI.objects.clear();
+                    objects.clear();
                     new OpenFile();
+
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -201,14 +201,35 @@ public class GUI extends JFrame {
 
         undo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
+
                 shape = "Undo";
-                GUI.objects.remove(GUI.objects.size()-1);
-                System.out.println(GUI.objects.size());
+                objects.remove(objects.size()-1);
+                System.out.println(objects.size());
                 canvas.updateUI();
                 canvas.repaint();
             }
         });
         addToPanel(toolPanel,undo,constraints,0,0,2,1);
+
+        JComboBox undoHistory = new JComboBox();
+//        subList()
+        undoHistory.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (int i =0; i < objects.size() -1 ; i ++){
+                    undoHistory.addItem(objects.get(i));
+                }
+                int selectedUndo = undoHistory.getSelectedIndex();
+                for (int i = undoHistory.getItemCount(); i > selectedUndo; i--){
+                    undoHistory.remove(i);
+                    objects.remove(i);
+                }
+                canvas.repaint();
+            }
+        });
+        addToPanel(toolPanel,undoHistory,constraints,2,0,2,1);
+
+
         //Create fill button
         JButton btnFill = new JButton("Fillcolor");
         btnFill.addActionListener(new ActionListener() {
@@ -345,6 +366,7 @@ public class GUI extends JFrame {
         canvas.add(new App(), BorderLayout.CENTER);
         validate();
     }
+
     private void addToPanel(JPanel jp, Component c,   GridBagConstraints constraints,int x,   int    y,   int    w,   int    h)   {
         constraints.gridx = x;
         constraints.gridy = y;

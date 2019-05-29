@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -45,7 +45,7 @@ public class OpenFile extends JFrame {
                                 }
                                 System.out.println(Integer.parseInt(a[5]));
                                 GUI.objects.add(r);
-                                GUI.f.repaint();
+                                //GUI.f.repaint();
                             }
                             else if(a[0].equals("Ellipse")){
                                 Ellipse r = new Ellipse();
@@ -57,21 +57,20 @@ public class OpenFile extends JFrame {
                                     r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
                                 }
                                 GUI.objects.add(r);
-                                GUI.f.repaint();
+                                //GUI.f.repaint();
                             }else if(a[0].equals("Plot")){
                                 Plot r = new Plot();
                                 r.setPoint(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])));
                                 r.setColor(new Color(Integer.parseInt(a[3]), Integer.parseInt(a[4]), Integer.parseInt(a[5])));
                                 GUI.objects.add(r);
-                                GUI.f.repaint();
+                                //GUI.f.repaint();
                             }else if(a[0].equals("Line")){
                                 Line r = new Line();
                                 r.makeObject(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])), new Point(Integer.parseInt((a[3])), Integer.parseInt((a[4]))));
                                 r.setColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
                                 GUI.objects.add(r);
-                                GUI.f.repaint();
+                                //GUI.f.repaint();
                             }
-
                             t = br.readLine();
                         }
                     }
