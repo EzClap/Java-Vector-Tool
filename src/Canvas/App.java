@@ -18,20 +18,20 @@ public class App extends JComponent {
                 spoint = new Point(e.getX(), e.getY());
                 fpoint = spoint;
                 if (GUI.shape == "move") {
-                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.paint.get(i);
+                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.objects.get(i);
                         if (pt.contains(spoint)) {
                             currentPaint = pt;
-                            GUI.paint.remove(pt);
+                            GUI.objects.remove(pt);
                             break;
                         }
                     }
                 } else if (GUI.shape == "Delete") {
-                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.paint.get(i);
+                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.objects.get(i);
                         if (pt.contains(spoint)) {
                             currentPaint = null;
-                            GUI.paint.remove(pt);
+                            GUI.objects.remove(pt);
                             break;
                         }
                     }
@@ -43,22 +43,22 @@ public class App extends JComponent {
                 if (GUI.shape == "Rectangle") {
                     Rectangle obj = new Rectangle();
                     obj.makeObject(spoint, p);
-                    GUI.paint.add(obj);
+                    GUI.objects.add(obj);
                 } else if (GUI.shape == "Line") {
                     Line obj = new Line();
                     obj.makeObject(spoint, p);
-                    GUI.paint.add(obj);
+                    GUI.objects.add(obj);
                 } else if (GUI.shape == "Ellipse") {
                     Ellipse obj = new Ellipse();
                     obj.makeObject(spoint, p);
-                    GUI.paint.add(obj);
+                    GUI.objects.add(obj);
                 } else if (GUI.shape == "Plot") {
                     Plot obj = new Plot();
                     obj.makeObject(spoint, p);
-                    GUI.paint.add(obj);
+                    GUI.objects.add(obj);
                 }   else if (GUI.shape == "fill") {
-                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.paint.get(i);
+                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.objects.get(i);
                         try {
                             ConnectorRecEllipsePoly s = (ConnectorRecEllipsePoly) pt;
                             if (s.contains(spoint)) {
@@ -74,12 +74,12 @@ public class App extends JComponent {
                 } else if (GUI.shape == "move") {
                     if (currentPaint.contains(spoint)) {
                         currentPaint.move(spoint, p);
-                        GUI.paint.add(currentPaint);
+                        GUI.objects.add(currentPaint);
                     }
                 }
                 spoint = null;
                 fpoint = null;
-                System.out.println(GUI.paint.size());
+                System.out.println(GUI.objects.size());
                 repaint();
             }
         });
@@ -102,7 +102,7 @@ public class App extends JComponent {
             g2.getGraphicAdapter().drawImage(OpenFile.image, 0, 0, null);
             repaint();
         }
-        for (Paint pt : GUI.paint) {
+        for (Paint pt : GUI.objects) {
             pt.draw(g2);
         }
         if (spoint != null && fpoint != null) {

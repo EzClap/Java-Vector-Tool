@@ -1,4 +1,4 @@
-//package paint;
+//package objects;
 //
 //import javax.swing.*;
 //import java.awt.*;
@@ -27,8 +27,8 @@
 //        mouseListen();
 //    }
 //
-//    public void paint(Graphics g) {
-//        super.paint(g);
+//    public void objects(Graphics g) {
+//        super.objects(g);
 //
 //        if (done) {
 //            for (int i = 0; i < polygons.size(); i = i + 2) {

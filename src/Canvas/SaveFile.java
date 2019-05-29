@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
-import java.io.*;
-import java.util.*;
 
 
 public class SaveFile extends JFrame {
@@ -25,11 +23,11 @@ public class SaveFile extends JFrame {
                     FileOutputStream fi = new FileOutputStream(saveFile.getSelectedFile() + ext);
                     OutputStreamWriter out = new OutputStreamWriter(fi);
                     BufferedWriter b = new BufferedWriter(out);
-                    for(int i = 0; i<GUI.paint.size(); i++)
+                    for(int i = 0; i<GUI.objects.size(); i++)
                     {
-                        Paint pt = GUI.paint.get(i);
-                        //pt.writetoFile(b);\
-//                        writer.printf
+                        Paint pt = GUI.objects.get(i);
+                        pt.writetoFile(b);
+//                        writer.printf;
                         b.newLine();
                     }
                     b.close();
