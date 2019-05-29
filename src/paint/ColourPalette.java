@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 1995, 2008, Oracle and/or its affiliates. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,7 +28,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package Canvas;
+package paint;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -41,9 +41,9 @@ public class ColourPalette extends JFrame implements ChangeListener {
 
     public static JColorChooser tcc;
     public ColourPalette() {
-        setTitle("Choose Color");
+        setTitle("Choose Colour");
         setVisible(true);
-        setSize(600, 400);
+        setSize(675, 430);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         JPanel bannerPanel = new JPanel(new BorderLayout());
 
