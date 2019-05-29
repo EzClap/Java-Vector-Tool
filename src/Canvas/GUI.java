@@ -53,10 +53,10 @@ public class GUI extends JFrame {
                 shape = "";
                 OpenFile.image = null;
 
-                //Canvas.GUI g = new Canvas.GUI();
-                //g.setVisible(true);
-                objects.clear();
-                //g.objects = new ArrayList<Paint> ();
+                GUI g = new GUI();
+                g.setVisible(true);
+                //g.objects.clear();
+                g.objects = new ArrayList<Paint> ();
 
                 repaint();
             }

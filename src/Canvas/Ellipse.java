@@ -50,7 +50,7 @@ public class Ellipse implements ConnectorRecEllipsePoly {
         else{
             g.getGraphicAdapter().setColor(getColor());
             g.getGraphicAdapter().fillOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
-            g.getGraphicAdapter().setColor((this.getLineColor()));
+            g.getGraphicAdapter().setColor(this.getLineColor());
             g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
         }
     }

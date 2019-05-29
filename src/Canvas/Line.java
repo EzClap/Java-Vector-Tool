@@ -8,7 +8,7 @@ import java.awt.geom.Line2D;
 
 
 
-public class Line implements ConnectorLinePlot{
+public class Line implements ConnectorLinePlot {
     private Line2D line;
     private Color color;
     public Line(){

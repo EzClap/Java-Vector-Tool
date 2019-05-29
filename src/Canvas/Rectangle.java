@@ -45,7 +45,7 @@ public class Rectangle implements ConnectorRecEllipsePoly {
         else{
             g.getGraphicAdapter().setColor(this.getColor());
             g.getGraphicAdapter().fillRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
-            g.getGraphicAdapter().setColor((this.getLineColor()));
+            g.getGraphicAdapter().setColor(this.getLineColor());
             g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
         }
     }
@@ -66,10 +66,10 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     public void writetoFile(BufferedWriter b){
         try {
             b.write(getClass().getSimpleName() + " ");
-            b.write(getRect().x + " " + getRect().y + " " + getRect().width + " " + getRect().height + " ");
+            b.write(getRect().x + " " + getRect().y + " " + getRect().width + " " + getRect().height + "\n");
             b.write(getLineColor().getRed() + " " +getLineColor().getGreen() + " " + getLineColor().getBlue() +" ");
             if(getColor()==null){
-                b.write("null" + " " +"null" +" " + "null");
+                b.write("null" + ";" +"null" +" " + "null");
             }else{
                 b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
             }

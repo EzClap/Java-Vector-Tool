@@ -1,16 +1,21 @@
 package Canvas;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.BasicStroke;
+import java.awt.*;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class App extends JComponent {
     public Point spoint, fpoint;
     public Paint currentPaint;
     public BasicStroke strokeSize;
+
+    private ArrayList<Point> polyPoint = new ArrayList<>();
+    private ArrayList<Point> polyPointEnd = new ArrayList<>();
+    private int[] polyX;
+    private int[] polyY;
+    private int polyIndex = 0;
 
     public App() {
         this.addMouseListener(new MouseAdapter() {
@@ -35,6 +40,33 @@ public class App extends JComponent {
                             break;
                         }
                     }
+                } else if (GUI.shape == "Polygon") {
+                    polyPoint.add(spoint);
+                    polyIndex = polyPoint.indexOf(spoint);
+
+                    if (polyIndex > 0) {
+                        int xDiff = polyPoint.get(polyIndex).x - polyPoint.get(0).x;
+                        int yDiff = polyPoint.get(polyIndex).y - polyPoint.get(0).y;
+
+                        if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
+                            int size = polyPoint.size();
+                            polyX = new int[size];
+                            polyY = new int[size];
+                            for (int i = 0; i < size; i++) {
+                                polyX[i] = polyPoint.get(i).x;
+                                polyY[i] = polyPoint.get(i).y;
+                            }
+                            polyPoint.clear();
+                            polyIndex = 0;
+                            polyPointEnd.clear();
+//                            polyLine.clear();
+
+                            Polygon obj = new Polygon();
+                            obj.makeObject(polyX, polyY);
+                            GUI.objects.add(obj);
+                            repaint();
+                        }
+                    }
                 }
             }
 
@@ -56,7 +88,7 @@ public class App extends JComponent {
                     Plot obj = new Plot();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
-                }   else if (GUI.shape == "fill") {
+                } else if (GUI.shape == "fill") {
                     for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.objects.get(i);
                         try {
@@ -77,8 +109,10 @@ public class App extends JComponent {
                         GUI.objects.add(currentPaint);
                     }
                 }
-                spoint = null;
-                fpoint = null;
+                if (GUI.shape != "Polygon") {
+                    spoint = null;
+                    fpoint = null;
+                }
                 System.out.println(GUI.objects.size());
                 repaint();
             }
@@ -88,6 +122,18 @@ public class App extends JComponent {
             public void mouseDragged(MouseEvent e) {
                 fpoint = new Point(e.getX(), e.getY());
                 repaint();
+            }
+
+            public void mouseMoved(MouseEvent e) {
+                if (GUI.shape == "Polygon") {
+
+                    int i = polyIndex + 1;
+                    if (polyPoint.contains(spoint)) {
+                        polyPointEnd.add(polyIndex, e.getPoint());
+
+                        repaint();
+                    }
+                }
             }
         });
     }
@@ -122,7 +168,22 @@ public class App extends JComponent {
                 Line obj = new Line();
                 obj.makeObject(spoint, fpoint);
                 obj.draw(g2);
-            }  else if (GUI.shape == "move") {
+            } else if (GUI.shape == "Polygon") {
+                if (!polyPointEnd.isEmpty()) {
+                    for (Point point : polyPoint) {
+                        int index = polyPoint.indexOf(point);
+                        g2.getGraphicAdapter().setColor(GUI.colour);
+                        g2.getGraphicAdapter().drawLine(point.x, point.y,
+                                polyPointEnd.get(index).x, polyPointEnd.get(index).y);
+                    }
+                } else {
+                    Polygon obj = new Polygon();
+                    if (polyX != null) {
+                        obj.makeObject(polyX, polyY);
+                        obj.draw(g2);
+                    }
+                }
+            } else if (GUI.shape == "move") {
                 if (currentPaint instanceof Rectangle) {
                     Rectangle r = (Rectangle) currentPaint;
                     if (r.contains(spoint)) {
@@ -132,6 +193,7 @@ public class App extends JComponent {
                         } else {
                             g2.getGraphicAdapter().setColor(r.getColor());
                             g2.getGraphicAdapter().fillRect(r.getRect().x + fpoint.x - spoint.x, r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
+                            g2.getGraphicAdapter().setColor(r.getLineColor());
                             g2.getGraphicAdapter().drawRect(r.getRect().x + fpoint.x - spoint.x, r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
                         }
                     }
@@ -144,6 +206,22 @@ public class App extends JComponent {
                         } else {
                             g2.getGraphicAdapter().setColor(oval.getColor());
                             g2.getGraphicAdapter().fillOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x), (int) (oval.getElip2d().getY() + fpoint.y - spoint.y), (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
+                            g2.getGraphicAdapter().setColor(oval.getLineColor());
+                            g2.getGraphicAdapter().drawOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x), (int) (oval.getElip2d().getY() + fpoint.y - spoint.y), (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
+                        }
+                    }
+                } else if (currentPaint instanceof Polygon) {
+                    Polygon polygon = (Polygon) currentPaint;
+                    if (polygon.contains(spoint)) {
+                        if(polygon.getColor() == null){
+                            g2.getGraphicAdapter().setColor(polygon.getLineColor());
+                            g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
+                        }
+                        else{
+                            g2.getGraphicAdapter().setColor(polygon.getColor());
+                            g2.getGraphicAdapter().fillPolygon(polygon.getPolygon());
+                            g2.getGraphicAdapter().setColor(polygon.getLineColor());
+                            g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
                         }
                     }
                 }
