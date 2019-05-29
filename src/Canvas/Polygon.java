@@ -1,116 +1,112 @@
-//package paint;
-//
-//import javax.swing.*;
-//import java.awt.*;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseMotionAdapter;
-//import java.util.ArrayList;
-//
-//public class Polygon extends JPanel {
-//
-//    private ArrayList<int[]> polygons = new ArrayList<>();
-//    private ArrayList<Integer> numPolyPoints = new ArrayList<>();
-//    private int pointIndex = 0;
-//    private int[] x;
-//    private int[] y;
-//    private boolean done = false;
-//    private Color penColor;
-//    private Color fillColor;
-//
-//    private ArrayList<Point> pointStart = new ArrayList<>();
-//    private ArrayList<Point> pointEnd = new ArrayList<>();
-//
-//    public Polygon(Color penColor, Color fillColor) {
-//        this.penColor = penColor;
-//        this.fillColor = fillColor;
-//        mouseListen();
-//    }
-//
-//    public void paint(Graphics g) {
-//        super.paint(g);
-//
-//        if (done) {
-//            for (int i = 0; i < polygons.size(); i = i + 2) {
-//                int yIndex = i + 1;
-//                int[] xp = polygons.get(i);
-//                int[] yp = polygons.get(yIndex);
-//
-//                g.setColor(fillColor);
-//                g.fillPolygon(xp, yp, numPolyPoints.get(i));
-//                g.setColor(penColor);
-//                g.drawPolygon(xp, yp, numPolyPoints.get(i));
-//            }
-//        }
-//
-//        if (!pointStart.isEmpty()) {
-//            for (Point point : pointStart) {
-//                int index = pointStart.indexOf(point);
-//                g.setColor(penColor);
-//                g.drawLine(point.x, point.y, pointEnd.get(index).x, pointEnd.get(index).y);
-//            }
-//        } else {
-//            done = true;
-//        }
-//    }
-//    @Override
-//    public void fill(Color c){
-//        this.setColor(c);
-//    }
-//
-//    private void mouseListen() {
-//        addMouseListener(new MouseAdapter() {
-//
-//            public void mousePressed(MouseEvent e) {
-//                pointStart.add(e.getPoint());
-//                pointIndex = pointStart.indexOf(e.getPoint());
-//
-//                if (pointIndex > 0) {
-//                    int xDiff = pointStart.get(pointIndex).x - pointStart.get(0).x;
-//                    int yDiff = pointStart.get(pointIndex).y - pointStart.get(0).y;
-//
-//                    if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
-//                        int size = pointStart.size();
-//                        numPolyPoints.add(size);
-//                        numPolyPoints.add(0);
-//                        x = new int[size];
-//                        y = new int[size];
-//                        for (int i = 0; i < size; i++) {
-//                            x[i] = pointStart.get(i).x;
-//                            y[i] = pointStart.get(i).y;
-//                        }
-//                        polygons.add(x);
-//                        polygons.add(y);
-//                        pointStart.clear();
-//                        pointEnd.clear();
-//                        pointIndex = 0;
-//                    }
-//                }
-//                repaint();
-//            }
-//
-//            public void mouseReleased(MouseEvent e) {
-////                pointX.add(pointIndex, e.getPoint().x);
-////                pointY.add(pointIndex, e.getPoint().y);
-////                pointIndex++
-//            }
-//        });
-//
-//        addMouseMotionListener(new MouseMotionAdapter() {
-//
-//            public void mouseMoved(MouseEvent e) {
-//                pointEnd.add(pointIndex, e.getPoint());
-//                repaint();
-//            }
-//
-//            public void mouseDragged(MouseEvent e) {
-////                pointX.add(pointIndex, e.getPoint().x);
-////                pointY.add(pointIndex, e.getPoint().y);
-////                repaint();
-////                pointEnd.add(pointIndex, e.getPoint());
-////                repaint();
-//            }
-//        });
-//    }
-//
-//}
+package Canvas;
+
+import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
+
+public class Polygon implements ConnectorRecEllipsePoly {
+    private java.awt.Polygon polygon;
+    private Color lineColour;
+    private Color colour = null;
+
+    public Polygon(){
+
+    }
+
+    public Polygon(java.awt.Polygon p){
+        this.polygon = p;
+    }
+
+    public Polygon(java.awt.Polygon p, Color lc){
+        this.polygon = p;
+        this.lineColour = lc;
+    }
+
+    public Polygon(java.awt.Polygon p, Color lc, Color c){
+        this.polygon = p;
+        this.lineColour = lc;
+        this.colour = c;
+    }
+
+    public java.awt.Polygon getPolygon() {
+        return polygon;
+    }
+    public void setPolygon(java.awt.Polygon elip2d) {
+        this.polygon = elip2d;
+    }
+    public Color getLineColor() {
+        return lineColour;
+    }
+    public void setLineColor(Color linecolor) {
+        this.lineColour = linecolor;
+    }
+    public Color getColor() {
+        return colour;
+    }
+    public void setColor(Color color) {
+        this.colour = color;
+    }
+
+    @Override
+    public void fill(Color c){
+        this.setColor(c);
+    }
+
+    @Override
+    public boolean contains(Point p) {
+        return polygon.contains(p);
+    }
+
+    @Override
+    public void move(Point startDrag, Point endDrag){
+        polygon.translate( endDrag.x - startDrag.x , endDrag.y - startDrag.y );
+    }
+
+    public void makeObject(Point startDrag, Point endDrag){
+
+    }
+
+    public void makeObject(int[] xpoints, int[] ypoints){
+        setLineColor(GUI.colour);
+
+        java.awt.Polygon p = new java.awt.Polygon();
+        for (int i = 0; i < xpoints.length; i ++){
+            p.addPoint(xpoints[i], ypoints[i]);
+        }
+        this.setPolygon(p);
+    }
+
+    @Override
+    public void writetoFile(BufferedWriter b){
+        try {
+            b.write(getClass().getSimpleName() + " ");
+
+            for (int i=0;i < polygon.npoints-1 ; i++){
+                b.write(polygon.xpoints[i] + " " + polygon.ypoints[i] + " ");
+            }
+
+            b.write(getLineColor().getRed() + " " +getLineColor().getGreen() + " " + getLineColor().getBlue() +" ");
+            if(getColor()==null){
+                b.write("null" + " " +"null" +" " + "null");
+            }else{
+                b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void draw(GraphicsAdapter g) {
+        if(getColor() == null){
+            g.getGraphicAdapter().setColor(getLineColor());
+            g.getGraphicAdapter().drawPolygon(polygon);
+        }
+        else{
+            g.getGraphicAdapter().setColor(getColor());
+            g.getGraphicAdapter().fillPolygon(polygon);
+            g.getGraphicAdapter().setColor(getLineColor());
+            g.getGraphicAdapter().drawPolygon(polygon);
+        }
+    }
+}
