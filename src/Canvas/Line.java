@@ -46,9 +46,9 @@ public class Line implements ConnectorLinePlot{
     @Override
     public void writetoFile(BufferedWriter b){
         try {
-            b.write(getClass().getSimpleName() + ";");
-            b.write((int)getLine().getX1() + ";" + (int)getLine().getY1() + ";" + (int)getLine().getX2() + ";" + (int)getLine().getY2() + ";");
-            b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
+            b.write(getClass().getSimpleName() + " ");
+            b.write((int)getLine().getX1() + " " + (int)getLine().getY1() + " " + (int)getLine().getX2() + " " + (int)getLine().getY2() + " ");
+            b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
         } catch (IOException e) {
             e.printStackTrace();
         }

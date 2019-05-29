@@ -50,6 +50,8 @@ public class Ellipse implements ConnectorRecEllipsePoly {
         else{
             g.getGraphicAdapter().setColor(getColor());
             g.getGraphicAdapter().fillOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
+            g.getGraphicAdapter().setColor((this.getLineColor()));
+            g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
         }
     }
     @Override
@@ -68,13 +70,13 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     @Override
     public void writetoFile(BufferedWriter b){
         try {
-            b.write(getClass().getSimpleName() + ";");
-            b.write((int)getElip2d().getX() + ";" + (int)getElip2d().getY() + ";" + (int)getElip2d().getWidth() + ";" + (int)getElip2d().getHeight() + ";");
-            b.write(getLineColor().getRed() + ";" +getLineColor().getGreen() + ";" + getLineColor().getBlue() +";");
+            b.write(getClass().getSimpleName() + " ");
+            b.write((int)getElip2d().getX() + " " + (int)getElip2d().getY() + " " + (int)getElip2d().getWidth() + " " + (int)getElip2d().getHeight() + " ");
+            b.write(getLineColor().getRed() + " " +getLineColor().getGreen() + " " + getLineColor().getBlue() +" ");
             if(getColor()==null){
-                b.write("null" + ";" +"null" +";" + "null");
+                b.write("null" + " " +"null" +" " + "null");
             }else{
-                b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
+                b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
             }
         } catch (IOException e) {
             e.printStackTrace();
