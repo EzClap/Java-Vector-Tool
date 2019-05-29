@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 import java.awt.*;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
@@ -13,15 +13,21 @@ import javax.swing.JMenuItem;
 //import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
+
+/**
+ *
+ */
 public class GUI extends JFrame {
     public static String shape = "Plot";
     public static Color colour = Color.BLACK;
-    public static ArrayList<Paint> paint = new ArrayList<Paint>();
+    public static ArrayList<Paint> objects = new ArrayList<Paint>();
     private JPanel canvas;
     public static GUI f;
 
     public static void main(String[] args)
     {
+        ArrayList<Paint> paint = new ArrayList<Paint>();
+        f.objects = paint;
         f = new GUI();
         f.setVisible(true);
     }
@@ -46,9 +52,12 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 shape = "";
                 OpenFile.image = null;
-                //new GUI().setVisible(true);
 
-                paint.clear();
+                Canvas.GUI g = new Canvas.GUI();
+                g.setVisible(true);
+                //g.objects.clear();
+                g.objects = new ArrayList<Paint> ();
+
                 repaint();
             }
         });
@@ -60,7 +69,7 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 shape ="Open";
                 try {
-                    GUI.paint.clear();
+                    GUI.objects.clear();
                     new OpenFile();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
@@ -193,8 +202,8 @@ public class GUI extends JFrame {
         undo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent a) {
                 shape = "Undo";
-                GUI.paint.remove(GUI.paint.size()-1);
-                System.out.println(GUI.paint.size());
+                GUI.objects.remove(GUI.objects.size()-1);
+                System.out.println(GUI.objects.size());
                 canvas.updateUI();
                 canvas.repaint();
             }

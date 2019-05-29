@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 
 import java.awt.*;
 import java.io.BufferedWriter;
@@ -64,13 +64,13 @@ public class Rectangle implements ConnectorRecEllipsePoly {
 
     public void writetoFile(BufferedWriter b){
         try {
-            b.write(getClass().getSimpleName() + ";");
+            b.write(getClass().getSimpleName() + " ");
             b.write(getRect().x + " " + getRect().y + " " + getRect().width + " " + getRect().height + "\n");
-            b.write(getLineColor().getRed() + ";" +getLineColor().getGreen() + ";" + getLineColor().getBlue() +";");
+            b.write(getLineColor().getRed() + " " +getLineColor().getGreen() + " " + getLineColor().getBlue() +" ");
             if(getColor()==null){
-                b.write("null" + ";" +"null" +";" + "null");
+                b.write("null" + ";" +"null" +" " + "null");
             }else{
-                b.write(getColor().getRed() + ";" + getColor().getGreen() + ";" + getColor().getBlue());
+                b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
             }
         } catch (IOException e) {
             e.printStackTrace();

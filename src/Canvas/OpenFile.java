@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -43,7 +43,7 @@ public class OpenFile extends JFrame {
                                 }else{
                                     r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
                                 }
-                                GUI.paint.add(r);
+                                GUI.objects.add(r);
                                 GUI.f.repaint();
                             }
                             else if(a[0].equals("Ellipse")){
@@ -55,13 +55,13 @@ public class OpenFile extends JFrame {
                                 }else{
                                     r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
                                 }
-                                GUI.paint.add(r);
+                                GUI.objects.add(r);
                                 GUI.f.repaint();
                             }else if(a[0].equals("Plot")){
                                 Plot r = new Plot();
                                 r.setPoint(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])));
                                 r.setColor(new Color(Integer.parseInt(a[3]), Integer.parseInt(a[4]), Integer.parseInt(a[5])));
-                                GUI.paint.add(r);
+                                GUI.objects.add(r);
                                 GUI.f.repaint();
                             }
                             t = br.readLine();
