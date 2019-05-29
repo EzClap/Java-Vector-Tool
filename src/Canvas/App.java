@@ -1,9 +1,10 @@
-package Canvas;
-import java.awt.*;
+package paint;
+import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.BasicStroke;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public class App extends JComponent {
@@ -11,60 +12,27 @@ public class App extends JComponent {
     public Paint currentPaint;
     public BasicStroke strokeSize;
 
-    private ArrayList<Point> polyPoint = new ArrayList<>();
-    private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private int[] polyX;
-    private int[] polyY;
-    private int polyIndex = 0;
-
     public App() {
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
                 spoint = new Point(e.getX(), e.getY());
                 fpoint = spoint;
                 if (GUI.shape == "move") {
-                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.objects.get(i);
+                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.paint.get(i);
                         if (pt.contains(spoint)) {
                             currentPaint = pt;
-                            GUI.objects.remove(pt);
+                            GUI.paint.remove(pt);
                             break;
                         }
                     }
                 } else if (GUI.shape == "Delete") {
-                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.objects.get(i);
+                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.paint.get(i);
                         if (pt.contains(spoint)) {
                             currentPaint = null;
-                            GUI.objects.remove(pt);
+                            GUI.paint.remove(pt);
                             break;
-                        }
-                    }
-                } else if (GUI.shape == "Polygon") {
-                    polyPoint.add(spoint);
-                    polyIndex = polyPoint.indexOf(spoint);
-
-                    if (polyIndex > 0) {
-                        int xDiff = polyPoint.get(polyIndex).x - polyPoint.get(0).x;
-                        int yDiff = polyPoint.get(polyIndex).y - polyPoint.get(0).y;
-
-                        if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
-                            int size = polyPoint.size();
-                            polyX = new int[size];
-                            polyY = new int[size];
-                            for (int i = 0; i < size; i++) {
-                                polyX[i] = polyPoint.get(i).x;
-                                polyY[i] = polyPoint.get(i).y;
-                            }
-                            polyPoint.clear();
-                            polyIndex = 0;
-                            polyPointEnd.clear();
-//                            polyLine.clear();
-
-                            Polygon obj = new Polygon();
-                            obj.makeObject(polyX, polyY);
-                            GUI.objects.add(obj);
-                            repaint();
                         }
                     }
                 }
@@ -75,22 +43,22 @@ public class App extends JComponent {
                 if (GUI.shape == "Rectangle") {
                     Rectangle obj = new Rectangle();
                     obj.makeObject(spoint, p);
-                    GUI.objects.add(obj);
+                    GUI.paint.add(obj);
                 } else if (GUI.shape == "Line") {
                     Line obj = new Line();
                     obj.makeObject(spoint, p);
-                    GUI.objects.add(obj);
+                    GUI.paint.add(obj);
                 } else if (GUI.shape == "Ellipse") {
                     Ellipse obj = new Ellipse();
                     obj.makeObject(spoint, p);
-                    GUI.objects.add(obj);
+                    GUI.paint.add(obj);
                 } else if (GUI.shape == "Plot") {
                     Plot obj = new Plot();
                     obj.makeObject(spoint, p);
-                    GUI.objects.add(obj);
-                } else if (GUI.shape == "fill") {
-                    for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
-                        Paint pt = GUI.objects.get(i);
+                    GUI.paint.add(obj);
+                }   else if (GUI.shape == "fill") {
+                    for (int i = GUI.paint.size() - 1; i >= 0; i = i - 1) {
+                        Paint pt = GUI.paint.get(i);
                         try {
                             ConnectorRecEllipsePoly s = (ConnectorRecEllipsePoly) pt;
                             if (s.contains(spoint)) {
@@ -106,14 +74,12 @@ public class App extends JComponent {
                 } else if (GUI.shape == "move") {
                     if (currentPaint.contains(spoint)) {
                         currentPaint.move(spoint, p);
-                        GUI.objects.add(currentPaint);
+                        GUI.paint.add(currentPaint);
                     }
                 }
-                if (GUI.shape != "Polygon") {
-                    spoint = null;
-                    fpoint = null;
-                }
-                System.out.println(GUI.objects.size());
+                spoint = null;
+                fpoint = null;
+                System.out.println(GUI.paint.size());
                 repaint();
             }
         });
@@ -122,18 +88,6 @@ public class App extends JComponent {
             public void mouseDragged(MouseEvent e) {
                 fpoint = new Point(e.getX(), e.getY());
                 repaint();
-            }
-
-            public void mouseMoved(MouseEvent e) {
-                if (GUI.shape == "Polygon") {
-
-                    int i = polyIndex + 1;
-                    if (polyPoint.contains(spoint)) {
-                        polyPointEnd.add(polyIndex, e.getPoint());
-
-                        repaint();
-                    }
-                }
             }
         });
     }
@@ -148,7 +102,7 @@ public class App extends JComponent {
             g2.getGraphicAdapter().drawImage(OpenFile.image, 0, 0, null);
             repaint();
         }
-        for (Paint pt : GUI.objects) {
+        for (Paint pt : GUI.paint) {
             pt.draw(g2);
         }
         if (spoint != null && fpoint != null) {
@@ -168,22 +122,7 @@ public class App extends JComponent {
                 Line obj = new Line();
                 obj.makeObject(spoint, fpoint);
                 obj.draw(g2);
-            } else if (GUI.shape == "Polygon") {
-                if (!polyPointEnd.isEmpty()) {
-                    for (Point point : polyPoint) {
-                        int index = polyPoint.indexOf(point);
-                        g2.getGraphicAdapter().setColor(GUI.colour);
-                        g2.getGraphicAdapter().drawLine(point.x, point.y,
-                                polyPointEnd.get(index).x, polyPointEnd.get(index).y);
-                    }
-                } else {
-                    Polygon obj = new Polygon();
-                    if (polyX != null) {
-                        obj.makeObject(polyX, polyY);
-                        obj.draw(g2);
-                    }
-                }
-            } else if (GUI.shape == "move") {
+            }  else if (GUI.shape == "move") {
                 if (currentPaint instanceof Rectangle) {
                     Rectangle r = (Rectangle) currentPaint;
                     if (r.contains(spoint)) {
