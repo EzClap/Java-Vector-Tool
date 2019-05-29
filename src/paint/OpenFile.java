@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -36,13 +36,14 @@ public class OpenFile extends JFrame {
                             String[] a = t.split(" ");
                             if(a[0].equals("Rectangle")){
                                 Rectangle r = new Rectangle();
-                                r.makeRectangle(Integer.parseInt(a[1].toString()), Integer.parseInt(a[2].toString()), Integer.parseInt(a[3].toString()), Integer.parseInt(a[4].toString()));
+                                r.makeRectangle(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
                                 r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
                                 if(a[8].equals("null")){
                                     r.setColor(null);
                                 }else{
                                     r.setColor(new Color(Integer.parseInt(a[8]), Integer.parseInt(a[9]), Integer.parseInt(a[10])));
                                 }
+                                System.out.println(Integer.parseInt(a[5]));
                                 GUI.objects.add(r);
                                 GUI.f.repaint();
                             }
@@ -63,7 +64,14 @@ public class OpenFile extends JFrame {
                                 r.setColor(new Color(Integer.parseInt(a[3]), Integer.parseInt(a[4]), Integer.parseInt(a[5])));
                                 GUI.objects.add(r);
                                 GUI.f.repaint();
+                            }else if(a[0].equals("Line")){
+                                Line r = new Line();
+                                r.makeObject(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])), new Point(Integer.parseInt((a[3])), Integer.parseInt((a[4]))));
+                                r.setColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
+                                GUI.objects.add(r);
+                                GUI.f.repaint();
                             }
+
                             t = br.readLine();
                         }
                     }

@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 import java.awt.*;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
@@ -53,10 +53,10 @@ public class GUI extends JFrame {
                 shape = "";
                 OpenFile.image = null;
 
-                Canvas.GUI g = new Canvas.GUI();
-                g.setVisible(true);
-                //g.objects.clear();
-                g.objects = new ArrayList<Paint> ();
+                //paint.GUI g = new paint.GUI();
+                //g.setVisible(true);
+                objects.clear();
+                //g.objects = new ArrayList<Paint> ();
 
                 repaint();
             }
