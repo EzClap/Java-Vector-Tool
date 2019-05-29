@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import javax.swing.JComponent;
 

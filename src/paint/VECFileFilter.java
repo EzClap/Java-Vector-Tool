@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import  java.io.File;
 
@@ -13,7 +13,7 @@ public class VECFileFilter extends FileFilter
             return false;
         }
         String s = f.getName();
-        return s.endsWith(".VEC");
+        return s.endsWith(".VEC")||s.endsWith(".vec");
     }
     public String getDescription()
     {

@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -46,9 +46,25 @@ public class Line implements ConnectorLinePlot {
     @Override
     public void writetoFile(BufferedWriter b){
         try {
+            if (getColor().getRed()<17 ){
+                b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
+            }else{
+                b.write("PEN #" + Integer.toHexString(getColor().getRed()));
+            }
+            if (getColor().getGreen() <17){
+                b.write("0" + Integer.toHexString(getColor().getGreen()));
+            }else{
+                b.write(Integer.toHexString(getColor().getGreen()));
+            }
+            if (getColor().getBlue()<17){
+                b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
+            }else{
+                b.write(Integer.toHexString(getColor().getBlue())+"\n");
+            }
+
             b.write(getClass().getSimpleName() + " ");
-            b.write((int)getLine().getX1() + " " + (int)getLine().getY1() + " " + (int)getLine().getX2() + " " + (int)getLine().getY2() + " ");
-            b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
+            b.write((getLine().getX1())/GUI.canvas.getWidth() + " " + (getLine().getY1())/GUI.canvas.getHeight() + " " + (getLine().getX2())/GUI.canvas.getWidth() + " " + (getLine().getY2())/GUI.canvas.getHeight());
+
         } catch (IOException e) {
             e.printStackTrace();
         }

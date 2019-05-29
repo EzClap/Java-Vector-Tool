@@ -1,4 +1,4 @@
-package Canvas;
+package paint;
 
 import java.awt.Color;
 import java.awt.Point;
@@ -41,9 +41,23 @@ public class Plot implements ConnectorLinePlot {
 
     public void writetoFile(BufferedWriter b){
         try {
+            if (getColor().getRed()<17 ){
+                b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
+            }else{
+                b.write("PEN #" + Integer.toHexString(getColor().getRed()));
+            }
+            if (getColor().getGreen() <17){
+                b.write("0" + Integer.toHexString(getColor().getGreen()));
+            }else{
+                b.write(Integer.toHexString(getColor().getGreen()));
+            }
+            if (getColor().getBlue()<17){
+                b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
+            }else{
+                b.write(Integer.toHexString(getColor().getBlue())+"\n");
+            }
             b.write(getClass().getSimpleName() + " ");
-            b.write(getPoint().x + " " + getPoint().y + " ");
-            b.write(getColor().getRed() + " " + getColor().getGreen() + " " + getColor().getBlue());
+            b.write((double)(getPoint().x)/GUI.canvas.getWidth() + " " + (double)(getPoint().y)/GUI.canvas.getHeight());
         } catch (IOException e) {
             e.printStackTrace();
         }
