@@ -1,4 +1,4 @@
-package paint;
+package Canvas;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.BasicStroke;
