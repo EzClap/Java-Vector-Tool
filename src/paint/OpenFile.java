@@ -98,7 +98,7 @@ public class OpenFile extends JFrame {
                                 GUI.objects.add(r);
                             }
                             t = br.readLine();
-                            GUI.f.repaint();
+                            GUI.app.repaint();
                         }
                     }
                 }

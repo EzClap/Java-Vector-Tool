@@ -115,7 +115,6 @@ public class App extends JComponent {
                     spoint = null;
                     fpoint = null;
                 }
-                System.out.println(GUI.objects.size());
                 repaint();
             }
         });
