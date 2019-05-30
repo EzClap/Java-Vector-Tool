@@ -15,8 +15,8 @@ public class App extends JComponent {
 
     private ArrayList<Point> polyPoint = new ArrayList<>();
     private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private ArrayList <Integer> polyX;
-    private ArrayList <Integer> polyY;
+    private ArrayList <Integer> polyX = new ArrayList<>();
+    private ArrayList <Integer> polyY = new ArrayList<>();
     private int polyIndex = 0;
 
     public App() {
@@ -28,7 +28,9 @@ public class App extends JComponent {
                 if (GUI.shape == "move") {
                     for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.objects.get(i);
-                        if (pt.contains(spoint)) {
+                        if (pt.contains(spoint) /*|| pt.contains(new Point(spoint.x-1, spoint.y-1))
+                            || pt.contains(new Point(spoint.x-1, spoint.y)) || pt.contains(new Point(spoint.x-1, spoint.y+1))
+                            || pt.contains(new Point(spoint.x, spoint.y-1)) || pt.contains(new Point(spoint.x+1, spoint.y-1))*/) {
                             currentPaint = pt;
                             GUI.objects.remove(pt);
                             break;
@@ -53,9 +55,13 @@ public class App extends JComponent {
 
                         if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
                             int size = polyPoint.size();
+                            if (!polyX.isEmpty()) {
+                                polyX.clear();
+                                polyY.clear();
+                            }
                             for (int i = 0; i < size; i++) {
-                                polyX.set(i, polyPoint.get(i).x);
-                                polyY.set(i, polyPoint.get(i).y);
+                                polyX.add(i, polyPoint.get(i).x);
+                                polyY.add(i, polyPoint.get(i).y);
                             }
                             polyPoint.clear();
                             polyIndex = 0;
@@ -154,11 +160,13 @@ public class App extends JComponent {
         }
         if (!polyPoint.isEmpty() && GUI.shape != "Polygon") {
             int size = polyPoint.size();
-            polyX = new int[size];
-            polyY = new int[size];
+            if (!polyX.isEmpty()) {
+                polyX.clear();
+                polyY.clear();
+            }
             for (int i = 0; i < size; i++) {
-                polyX[i] = polyPoint.get(i).x;
-                polyY[i] = polyPoint.get(i).y;
+                polyX.add(i, polyPoint.get(i).x);
+                polyY.add(i, polyPoint.get(i).y);
             }
             polyPoint.clear();
             polyIndex = 0;
@@ -241,7 +249,18 @@ public class App extends JComponent {
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
                         }
                     }
-
+                } else if (currentPaint instanceof Line) {
+                    Line line = (Line) currentPaint;
+                    if (line.contains(spoint)) {
+                        g2.getGraphicAdapter().setColor(line.getColor());
+                        g2.getGraphicAdapter().drawLine((int)line.getLine().getX1(), (int)line.getLine().getY1() , (int)line.getLine().getX2(), (int)line.getLine().getY2());
+                    }
+                } else if (currentPaint instanceof Plot) {
+                    Plot plot = (Plot) currentPaint;
+                    if (plot.contains(spoint)) {
+                        g2.GraphicAdapter.setColor(plot.getColor());
+                        g2.getGraphicAdapter().drawLine(plot.getPoint().x, plot.getPoint().y, plot.getPoint().x, plot.getPoint().y);
+                    }
                 }
             }
         }

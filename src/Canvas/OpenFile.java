@@ -1,5 +1,7 @@
 package Canvas;
 
+import paint.*;
+
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -36,7 +38,7 @@ public class OpenFile extends JFrame {
                             String[] a = t.split(" ");
                             if(a[0].equals("Rectangle")){
                                 Rectangle r = new Rectangle();
-                                r.makeRectangle(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                r.makeObject(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])), new Point(Integer.parseInt(a[3]), Integer.parseInt(a[4])));
                                 r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
                                 if(a[8].equals("null")){
                                     r.setColor(null);
@@ -48,7 +50,7 @@ public class OpenFile extends JFrame {
                             }
                             else if(a[0].equals("Ellipse")){
                                 Ellipse r = new Ellipse();
-                                r.makeEllipse(Integer.parseInt(a[1]), Integer.parseInt(a[2]), Integer.parseInt(a[3]), Integer.parseInt(a[4]));
+                                r.makeObject(new Point(Integer.parseInt(a[1]), Integer.parseInt(a[2])), new Point(Integer.parseInt(a[3]), Integer.parseInt(a[4])));
                                 r.setLineColor(new Color(Integer.parseInt(a[5]), Integer.parseInt(a[6]), Integer.parseInt(a[7])));
                                 if(a[8].equals("null")){
                                     r.setColor(null);
