@@ -15,8 +15,8 @@ public class App extends JComponent {
 
     private ArrayList<Point> polyPoint = new ArrayList<>();
     private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private ArrayList <Integer> polyX;
-    private ArrayList <Integer> polyY;
+    private ArrayList <Integer> polyX = new ArrayList<>();
+    private ArrayList <Integer> polyY = new ArrayList<>();
     private int polyIndex = 0;
 
     public App() {
@@ -54,8 +54,8 @@ public class App extends JComponent {
                         if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
                             int size = polyPoint.size();
                             for (int i = 0; i < size; i++) {
-                                polyX.set(i, polyPoint.get(i).x);
-                                polyY.set(i, polyPoint.get(i).y);
+                                polyX.add(polyPoint.get(i).x);
+                                polyY.add(polyPoint.get(i).y);
                             }
                             polyPoint.clear();
                             polyIndex = 0;
@@ -68,6 +68,7 @@ public class App extends JComponent {
                         }
                     }
                 }
+               // GUI.updateComboBox();
             }
 
 
@@ -114,7 +115,6 @@ public class App extends JComponent {
                     spoint = null;
                     fpoint = null;
                 }
-                System.out.println(GUI.objects.size());
                 repaint();
             }
         });
@@ -145,13 +145,26 @@ public class App extends JComponent {
         g2.setGraphicAdapter(g);
         strokeSize = new BasicStroke(4);
         g2.getGraphicAdapter().setStroke(strokeSize);
-        if (OpenFile.image != null) {
-            g2.getGraphicAdapter().drawImage(OpenFile.image, 0, 0, null);
-            repaint();
-        }
+
         for (Paint pt : GUI.objects) {
             pt.draw(g2);
         }
+        if(!polyPoint.isEmpty() && GUI.shape != "Polygon"){
+            int size = polyPoint.size();
+            for (int i = 0; i < size; i++) {
+                polyX.set(i, polyPoint.get(i).x);
+                polyY.set(i, polyPoint.get(i).y);
+            }
+            polyPoint.clear();
+            polyIndex = 0;
+            polyPointEnd.clear();
+
+            Polygon obj = new Polygon();
+            obj.makeObject(polyX, polyY);
+            GUI.objects.add(obj);
+            obj.draw(g2);
+        }
+
         if (spoint != null && fpoint != null) {
             if (GUI.shape == "Rectangle") {
                 Rectangle obj = new Rectangle();
@@ -214,6 +227,8 @@ public class App extends JComponent {
                 } else if (currentPaint instanceof Polygon) {
                     Polygon polygon = (Polygon) currentPaint;
                     if (polygon.contains(spoint)) {
+                        int[]x = {polygon.getPolygon().xpoints[0] + fpoint.x - spoint.x,polygon.getPolygon().xpoints[1] + fpoint.x - spoint.x, polygon.getPolygon().xpoints[2] + fpoint.x - spoint.x};
+                        int[]y = {polygon.getPolygon().ypoints[0] + fpoint.y - spoint.y,polygon.getPolygon().ypoints[1] + fpoint.y - spoint.y, polygon.getPolygon().ypoints[2] + fpoint.y - spoint.y};
                         if (polygon.getColor() == null) {
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
