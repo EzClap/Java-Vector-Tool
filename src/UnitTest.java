@@ -871,7 +871,7 @@ public class UnitTest {
     }
 
     @Test
-    public void testEllipseMove() {
+    public void testEllipseMove1() {
         Ellipse ellipse = new Ellipse();
         Random r = new Random();
         Point spoint = new Point();
@@ -885,6 +885,32 @@ public class UnitTest {
         Point endDrag = new Point();
         startDrag.setLocation(spoint.x + r.nextInt(200), spoint.y + r.nextInt(200));
         endDrag.setLocation(fpoint.x + r.nextInt(200), fpoint.y + r.nextInt(200));
+
+        ellipse.move(startDrag, endDrag);
+
+        Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y),
+                Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
+        e.setFrame(e.getX() + endDrag.x - startDrag.x,e.getY() + endDrag.y - startDrag.y,
+                e.getWidth(), e.getHeight());
+
+        assertEquals(e.getFrame(), ellipse.getElip2d().getFrame());
+    }
+
+    @Test
+    public void testEllipseMove2() {
+        Ellipse ellipse = new Ellipse();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextFloat(), r.nextFloat());
+        fpoint.setLocation(r.nextFloat(), r.nextFloat());
+
+        ellipse.makeObject(spoint, fpoint);
+
+        Point startDrag = new Point();
+        Point endDrag = new Point();
+        startDrag.setLocation(spoint.x + r.nextFloat(), spoint.y + r.nextFloat());
+        endDrag.setLocation(fpoint.x + r.nextFloat(), fpoint.y + r.nextFloat());
 
         ellipse.move(startDrag, endDrag);
 

@@ -152,6 +152,23 @@ public class App extends JComponent {
         for (Paint pt : GUI.objects) {
             pt.draw(g2);
         }
+        if (!polyPoint.isEmpty() && GUI.shape != "Polygon") {
+            int size = polyPoint.size();
+            polyX = new int[size];
+            polyY = new int[size];
+            for (int i = 0; i < size; i++) {
+                polyX[i] = polyPoint.get(i).x;
+                polyY[i] = polyPoint.get(i).y;
+            }
+            polyPoint.clear();
+            polyIndex = 0;
+            polyPointEnd.clear();
+
+            Polygon obj = new Polygon();
+            obj.makeObject(polyX, polyY);
+            GUI.objects.add(obj);
+            obj.draw(g2);
+        }
         if (spoint != null && fpoint != null) {
             if (GUI.shape == "Rectangle") {
                 Rectangle obj = new Rectangle();
