@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 
     /**
      * main method that creates a new instance of the 'GUI' and makes it visible.
-     * @param args
+     * @param args main args
      *
      */
     public static void main(String[] args)

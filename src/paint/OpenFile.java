@@ -27,7 +27,7 @@ public class OpenFile extends JFrame {
      * it will split up the data in the file and read it to adjust to line and fill colours and draw the shapes as a
      * ratio to the size of the canvas as all vector data points come in between 0 and 1, these data points are
      * multiplied by the canvas size to draw the file to fit the current size of the screen.
-     * @throws ClassNotFoundException
+     * @throws ClassNotFoundException exception
      */
     public OpenFile() throws ClassNotFoundException{
         JFileChooser fc = new JFileChooser();

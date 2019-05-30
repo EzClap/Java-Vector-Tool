@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 /**
  * Graphics Adapter creates an object that is of type Graphics2D
  */
-abstract class GraphicsAdapter {
+public class GraphicsAdapter {
     public Graphics2D GraphicAdapter;
     public GraphicsAdapter(){
     }
@@ -21,7 +21,7 @@ abstract class GraphicsAdapter {
 
     /**
      * sets the graphic adapter
-     * @param graphicAdapter
+     * @param graphicAdapter this is the new graphic adapter that is set
      */
     public void setGraphicAdapter(Graphics graphicAdapter) {
         GraphicAdapter = (Graphics2D)graphicAdapter;

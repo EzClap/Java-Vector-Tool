@@ -36,8 +36,8 @@ public class Polygon implements ExtendingFill {
 
     /**
      * is not used but is included as it is extended from paint through implemented ExtendingFill
-     * @param startDrag
-     * @param endDrag
+     * @param startDrag not used
+     * @param endDrag not used
      */
     public void makeObject(Point startDrag, Point endDrag){
 

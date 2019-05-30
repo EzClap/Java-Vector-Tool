@@ -155,7 +155,7 @@ public class Rectangle implements ExtendingFill {
 
     /**
      * getRect gets the rectangle
-     * @returns the rectangle
+     * @return rect the rectangle
      */
     public java.awt.Rectangle getRect() {
         return rect;
@@ -171,7 +171,7 @@ public class Rectangle implements ExtendingFill {
 
     /**
      * gets the line colour of the rectangle
-     * @return the Color
+     * @return lineColor the Color
      */
     public Color getLineColor() {
         return lineColor;
@@ -187,7 +187,7 @@ public class Rectangle implements ExtendingFill {
 
     /**
      * gets the fill colour of the rectangle
-     * @returns the colour
+     * @return the colour
      */
     public Color getColor() {
         return color;

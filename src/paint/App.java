@@ -156,8 +156,8 @@ public class App extends JComponent {
             }
 
             /**
-             * because polygon does not use drag, but clicks for each point, the line is shown when the mouse is
-             * moved so the user can see how it will look before they click to confirm the point
+             * mouseMoved method is because polygon does not use drag, but clicks for each point, the line is shown
+             * when the mouse is moved so the user can see how it will look before they click to confirm the point
              * @param e the mouse event
              */
             public void mouseMoved(MouseEvent e) {
