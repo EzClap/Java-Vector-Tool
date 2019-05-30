@@ -4,6 +4,7 @@ import Canvas.*;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Point2D;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -594,7 +595,7 @@ public class UnitTest {
     @Test
     public void testEllipseColor3() {
         Ellipse ellipse = new Ellipse();
-        Color color = Color.decode("#A0A0A0");
+        Color color = Color.decode("#a0a0a0");
         ellipse.setColor(color);
 
         assertEquals(color, ellipse.getColor());
@@ -790,8 +791,8 @@ public class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextDouble(), r.nextDouble());
-        fpoint.setLocation(r.nextDouble(), r.nextDouble());
+        spoint.setLocation(r.nextFloat(), r.nextFloat());
+        fpoint.setLocation(r.nextFloat(), r.nextFloat());
         Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -801,7 +802,98 @@ public class UnitTest {
     }
 
     @Test
-    public void testEllipseMakeOval() {
-        
+    public void testEllipseFill1() {
+        Ellipse ellipse = new Ellipse();
+        ellipse.fill(Color.MAGENTA);
+
+        assertEquals(Color.MAGENTA, ellipse.getColor());
     }
+
+    @Test
+    public void testEllipseFill2() {
+        Ellipse ellipse = new Ellipse();
+        ellipse.fill(Color.BLUE);
+
+        assertEquals(Color.BLUE, ellipse.getColor());
+    }
+
+    @Test
+    public void testEllipseFill3() {
+        Ellipse ellipse = new Ellipse();
+        ellipse.fill(Color.decode("#123456"));
+
+        assertEquals(Color.decode("#123456"), ellipse.getColor());
+    }
+
+
+    @Test
+    public void testEllipseContains1() {
+        Ellipse ellipse = new Ellipse();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        ellipse.makeObject(spoint, fpoint);
+        Point npoint = new Point();
+        npoint.setLocation((spoint.x+fpoint.x)/2, (spoint.y+fpoint.y)/2);
+
+        assertTrue(ellipse.contains(npoint));
+    }
+
+    @Test
+    public void testEllipseContains2() {
+        Ellipse ellipse = new Ellipse();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        ellipse.makeObject(spoint, fpoint);
+
+        assertFalse(ellipse.contains(spoint));
+    }
+
+    @Test
+    public void testEllipseContains3() {
+        Ellipse ellipse = new Ellipse();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        ellipse.makeObject(spoint, fpoint);
+
+        assertFalse(ellipse.contains(fpoint));
+    }
+
+    @Test
+    public void testEllipseMove() {
+        Ellipse ellipse = new Ellipse();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        ellipse.makeObject(spoint, fpoint);
+
+        Point startDrag = new Point();
+        Point endDrag = new Point();
+        startDrag.setLocation(spoint.x + r.nextInt(200), spoint.y + r.nextInt(200));
+        endDrag.setLocation(fpoint.x + r.nextInt(200), fpoint.y + r.nextInt(200));
+
+        ellipse.move(startDrag, endDrag);
+
+        Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y),
+                Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
+        e.setFrame(e.getX() + endDrag.x - startDrag.x,e.getY() + endDrag.y - startDrag.y,
+                e.getWidth(), e.getHeight());
+
+        assertEquals(e.getFrame(), ellipse.getElip2d().getFrame());
+    }
+
 }
