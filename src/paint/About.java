@@ -7,11 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JEditorPane;
 
+/**
+ * About class is a new JFrame that displays details about the assignment, is called when the about menu item is clicked
+ */
 public class About extends JFrame {
     private JPanel contentPane;
     public About() {
         setTitle("About");
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 225, 150);
         setVisible(true);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

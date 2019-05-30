@@ -3,11 +3,14 @@ package paint;
 import java.awt.*;
 import java.io.BufferedWriter;
 
+/**
+ * this is the interface that is implemented by all shapes is extended by ExtendingFill for the objects
+ * that can be filled
+ */
 public interface Paint {
-    public void draw( GraphicsAdapter g);
-    public boolean contains(Point p);
-    public void move(Point startDrag, Point endDrag);
-    public void writetoFile(BufferedWriter b);
-    public void makeObject(Point startDrag, Point endDrag);
-    //public void makeObject(int[] xpoints, int[] ypoints);
+    void draw( GraphicsAdapter g);
+    boolean contains(Point p);
+    void move(Point startDrag, Point endDrag);
+    void writetoFile(BufferedWriter b);
+    void makeObject(Point startDrag, Point endDrag);
 }

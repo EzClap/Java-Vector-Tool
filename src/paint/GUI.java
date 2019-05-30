@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.awt.event.MouseEvent;
 
 /**
- *This class runs the program, and contains the 'objects' arraylist which contains all the shapes that are drawn,
+ * This class runs the program, and contains the 'objects' arraylist which contains all the shapes that are drawn,
  * as well as creating the Graphical user interface.
  *
  */
@@ -51,7 +51,8 @@ public class GUI extends JFrame {
      *
      * The window and canvas JPanel are created here, the window is assigned as the
      * content pane which hold everything that is visible, and the canvas panel will be
-     * the panel that is drawn on, the app constructor is called on it to allow it to be drawn on and contain the Action listeners.
+     * the panel that is drawn on, the app constructor is called on it to allow it to be drawn on and contain the
+     * Action listeners.
      *
      * The constraints variable is initiated here which brings consistency visually for all the buttons
      *
@@ -66,7 +67,7 @@ public class GUI extends JFrame {
         Dimension minSize = new Dimension(600,400);
         setMinimumSize(minSize);
 
-        //Creates and sets up the 'window' this is set to the content pane, which will hold everything that is displayed.
+        //Creates and sets up the 'window' this is set to the content pane, which will hold everything that is displayed
         window = new JPanel();
         window.setSize(450,450);
         window.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -82,7 +83,8 @@ public class GUI extends JFrame {
         canvas.setBackground(Color.white);
         window.add(canvas, BorderLayout.CENTER);
 
-        //setting up constraints variable which will be used to create each button and make them look the same, for visual consistency.
+        //setting up constraints variable which will be used to create each button and make them look the same,
+        // for visual consistency.
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 100;
@@ -458,7 +460,7 @@ public class GUI extends JFrame {
      * @param h the height of the component
      *
      */
-    private void addToPanel(JPanel jp, Component c,   GridBagConstraints constraints,int x,   int    y,   int    w,   int    h)   {
+    private void addToPanel(JPanel jp, Component c, GridBagConstraints constraints, int x, int y, int w, int h){
         constraints.gridx = x;
         constraints.gridy = y;
         constraints.gridwidth = w;

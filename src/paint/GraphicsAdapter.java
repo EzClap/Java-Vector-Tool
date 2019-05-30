@@ -4,24 +4,25 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 /**
- *
+ * Graphics Adapter creates an object that is of type Graphics2D
  */
 abstract class GraphicsAdapter {
     public Graphics2D GraphicAdapter;
     public GraphicsAdapter(){
     }
-    public GraphicsAdapter(Graphics g){
-        this.GraphicAdapter = (Graphics2D) g;
-    }
-    public GraphicsAdapter(Graphics2D g){
-        this.GraphicAdapter = g;
-    }
+
+    /**
+     * gets the current graphic adapter
+     * @return the graphic adapter
+     */
     public Graphics2D getGraphicAdapter() {
         return GraphicAdapter;
     }
-    public void setGraphicAdapter(Graphics2D graphicAdapter) {
-        GraphicAdapter = graphicAdapter;
-    }
+
+    /**
+     * sets the graphic adapter
+     * @param graphicAdapter
+     */
     public void setGraphicAdapter(Graphics graphicAdapter) {
         GraphicAdapter = (Graphics2D)graphicAdapter;
     }

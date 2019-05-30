@@ -6,7 +6,14 @@ import java.io.OutputStreamWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+/**
+ * save file class controls how the vec files are saved and written into the folder selected
+ */
 public class SaveFile extends JFrame {
+    /**
+     * save file will save the file using the .vec extension type and use the writeToFile method that is declared
+     * uniquely through each of the shapes classes
+     */
     public SaveFile(){
         JFileChooser saveFile = new JFileChooser();
         saveFile.addChoosableFileFilter(new VECFileFilter());

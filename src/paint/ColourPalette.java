@@ -60,7 +60,6 @@ public class ColourPalette extends JFrame implements ChangeListener {
         });
         bannerPanel.add(btn, BorderLayout.SOUTH);
     }
-
     public void stateChanged(ChangeEvent e) {
         GUI.colour = tcc.getColor();
     }
