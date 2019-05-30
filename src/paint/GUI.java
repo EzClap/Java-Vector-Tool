@@ -18,7 +18,7 @@ public class GUI extends JFrame {
     public static ArrayList<Paint> objects = new ArrayList<Paint>();
     public static JPanel canvas;
     public static JPanel app;
-
+    public static JComboBox undoHistory;
     public static GUI f;
 
     public static void main(String[] args)
@@ -194,7 +194,7 @@ public class GUI extends JFrame {
             }
         });
         addToPanel(panel, btnRect, constraints, 0,3,2,1);
-
+        
         //Create ellipse button
         JButton btnEllipse = new JButton("Ellipse");
         btnEllipse.addActionListener(new ActionListener() {
@@ -202,7 +202,7 @@ public class GUI extends JFrame {
                 shape = "Ellipse";
             }
         });
-        addToPanel(panel, btnEllipse, constraints, 0,4,2,1);
+        addToPanel(panel, btnEllipse, constraints, 0,5,2,1);
 
         //Create polygon button
         JButton btnPolygon = new JButton("Polygon");
@@ -211,7 +211,7 @@ public class GUI extends JFrame {
                 shape = "Polygon";
             }
         }));
-        addToPanel(panel,btnPolygon, constraints,0,5,2,1);
+        addToPanel(panel,btnPolygon, constraints,0,6,2,1);
 
 
         JButton undo = new JButton("undo");
@@ -234,14 +234,12 @@ public class GUI extends JFrame {
         undoHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for (int i =0; i < objects.size() -1 ; i ++){
-                    undoHistory.addItem(objects.get(i));
-                }
                 int selectedUndo = undoHistory.getSelectedIndex();
                 for (int i = undoHistory.getItemCount(); i > selectedUndo; i--){
                     undoHistory.remove(i);
-                    objects.remove(i);
+
                 }
+                objects.subList(selectedUndo, objects.size()).clear();
                 canvas.repaint();
             }
         });
@@ -392,4 +390,9 @@ public class GUI extends JFrame {
         constraints.gridheight = h;
         jp.add(c, constraints);
     }
+
+//    public static void updateComboBox(){
+//        undoHistory.addItem(shape);
+//            undoHistory.addItem(objects.get(objects.size()-1).getClass().getSimpleName());
+//    }
 }

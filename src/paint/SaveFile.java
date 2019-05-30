@@ -14,7 +14,7 @@ public class SaveFile extends JFrame {
         if(sf == JFileChooser.APPROVE_OPTION){
             String ext = "";
             String extension = saveFile.getFileFilter().getDescription();
-             if(extension.equals("*.VEC")){
+             if(extension.equals("*.VEC")||extension.equals("*.vec")){
                 ext = ".VEC";
                 try{
                     FileOutputStream fi = new FileOutputStream(saveFile.getSelectedFile() + ext);

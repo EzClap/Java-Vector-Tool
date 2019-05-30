@@ -69,7 +69,7 @@ public class Polygon implements ConnectorRecEllipsePoly {
         setLineColor(GUI.colour);
 
         java.awt.Polygon p = new java.awt.Polygon();
-        for (int i = 0; i < xpoints.size(); i ++){
+        for (int i = 0; i < xpoints.size()-1; i ++){
             p.addPoint((int)xpoints.get(i), (int)ypoints.get(i));
         }
         this.setPolygon(p);
