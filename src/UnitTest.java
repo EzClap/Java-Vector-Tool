@@ -1137,8 +1137,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(500), r.nextInt(500));
-        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        spoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
+        fpoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
 
         obj.makeObject(spoint, fpoint);
         Point npoint = new Point();
@@ -1153,8 +1153,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(500), r.nextInt(500));
-        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        spoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
+        fpoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
 
         obj.makeObject(spoint, fpoint);
 
@@ -1167,8 +1167,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(500), r.nextInt(500));
-        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        spoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
+        fpoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
 
         obj.makeObject(spoint, fpoint);
 
@@ -2178,8 +2178,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(500), r.nextInt(500));
-        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        spoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
+        fpoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
 
         obj.makeObject(spoint, fpoint);
         Point npoint = new Point();
@@ -2194,8 +2194,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(500), r.nextInt(500));
-        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        spoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
+        fpoint.setLocation(r.nextInt(250)*2, r.nextInt(250)*2);
 
         obj.makeObject(spoint, fpoint);
         Point npoint = new Point();
@@ -2890,6 +2890,10 @@ class UnitTest {
         Point fpoint = new Point();
         spoint.setLocation(r.nextInt(500), r.nextInt(500));
         fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        while (spoint == fpoint) {
+            fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+        }
 
         obj.makeObject(spoint, fpoint);
 
@@ -3879,7 +3883,7 @@ class UnitTest {
 
         obj.makeObject(spoint, fpoint);
 
-        assertFalse(obj.contains(spoint));
+        assertTrue(obj.contains(spoint));
     }
 
     @Test
@@ -3893,7 +3897,23 @@ class UnitTest {
 
         obj.makeObject(spoint, fpoint);
 
-        assertFalse(obj.contains(fpoint));
+        assertTrue(obj.contains(fpoint));
+    }
+
+    @Test
+    void testLineContains4() {
+        Line obj = new Line();
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        obj.makeObject(spoint, fpoint);
+        Point npoint = new Point();
+        npoint.setLocation(spoint.x + fpoint.x, spoint.y + fpoint.y);
+
+        assertFalse(obj.contains(npoint));
     }
 
 

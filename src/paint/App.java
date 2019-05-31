@@ -15,8 +15,8 @@ public class App extends JComponent {
 
     private ArrayList<Point> polyPoint = new ArrayList<>();
     private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private ArrayList <Integer> polyX;
-    private ArrayList <Integer> polyY;
+    private ArrayList <Integer> polyX = new ArrayList<>();
+    private ArrayList <Integer> polyY = new ArrayList<>();
     private int polyIndex = 0;
 
     public App() {
@@ -119,7 +119,7 @@ public class App extends JComponent {
                     spoint = null;
                     fpoint = null;
                 }
-                System.out.println(GUI.objects.size());
+                //System.out.println(GUI.objects.size());
                 repaint();
             }
         });
