@@ -15,8 +15,8 @@ public class App extends JComponent {
 
     private ArrayList<Point> polyPoint = new ArrayList<>();
     private ArrayList<Point> polyPointEnd = new ArrayList<>();
-    private ArrayList <Integer> polyX = new ArrayList<>();
-    private ArrayList <Integer> polyY = new ArrayList<>();
+    private ArrayList <Integer> polyX;
+    private ArrayList <Integer> polyY;
     private int polyIndex = 0;
 
     public App() {
@@ -53,9 +53,13 @@ public class App extends JComponent {
 
                         if (xDiff <= 5 && xDiff >= -5 && yDiff <= 5 && yDiff >= -5) {
                             int size = polyPoint.size();
+                            if (!polyX.isEmpty()) {
+                                polyX.clear();
+                                polyY.clear();
+                            }
                             for (int i = 0; i < size; i++) {
-                                polyX.add(polyPoint.get(i).x);
-                                polyY.add(polyPoint.get(i).y);
+                                polyX.add(i, polyPoint.get(i).x);
+                                polyY.add(i, polyPoint.get(i).y);
                             }
                             polyPoint.clear();
                             polyIndex = 0;
@@ -115,6 +119,7 @@ public class App extends JComponent {
                     spoint = null;
                     fpoint = null;
                 }
+                System.out.println(GUI.objects.size());
                 repaint();
             }
         });
@@ -149,11 +154,15 @@ public class App extends JComponent {
         for (Paint pt : GUI.objects) {
             pt.draw(g2);
         }
-        if(!polyPoint.isEmpty() && GUI.shape != "Polygon"){
+        if (!polyPoint.isEmpty() && GUI.shape != "Polygon") {
             int size = polyPoint.size();
+            if (!polyX.isEmpty()) {
+                polyX.clear();
+                polyY.clear();
+            }
             for (int i = 0; i < size; i++) {
-                polyX.set(i, polyPoint.get(i).x);
-                polyY.set(i, polyPoint.get(i).y);
+                polyX.add(i, polyPoint.get(i).x);
+                polyY.add(i, polyPoint.get(i).y);
             }
             polyPoint.clear();
             polyIndex = 0;
@@ -164,7 +173,6 @@ public class App extends JComponent {
             GUI.objects.add(obj);
             obj.draw(g2);
         }
-
         if (spoint != null && fpoint != null) {
             if (GUI.shape == "Rectangle") {
                 Rectangle obj = new Rectangle();
