@@ -28,7 +28,8 @@ public class Plot implements ConnectorLinePlot {
 
 
     public boolean contains(Point p) {
-        if(p.x == getPoint().x && p.y == getPoint().y){
+        if(p.x <= getPoint().x + 1.5 && p.x >= getPoint().x - 1.5 &&
+                p.y <= getPoint().y + 1.5 && p.y >= getPoint().y - 1.5){
             return true;
         }
         return false;
@@ -57,7 +58,8 @@ public class Plot implements ConnectorLinePlot {
                 b.write(Integer.toHexString(getColor().getBlue())+"\n");
             }
             b.write(getClass().getSimpleName() + " ");
-            b.write((double)(getPoint().x)/GUI.canvas.getWidth() + " " + (double)(getPoint().y)/GUI.canvas.getHeight());
+            b.write((double)(getPoint().x)/GUI.canvas.getWidth() + " " +
+                    (double)(getPoint().y)/GUI.canvas.getHeight());
         } catch (IOException e) {
             e.printStackTrace();
         }

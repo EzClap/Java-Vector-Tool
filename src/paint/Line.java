@@ -2,6 +2,7 @@ package paint;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.geom.Point2D;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.awt.geom.Line2D;
@@ -33,12 +34,16 @@ public class Line implements ConnectorLinePlot {
 
     @Override
     public boolean contains(Point p) {
-        return this.contains(p);
+        int boxX = p.x - 1;
+        int boxY = p.y - 1;
+        return this.line.intersects(boxX,boxY,2,2);
     }
     @Override
     public void move(Point spoint, Point fpoint){
-        Point startPoint = new Point((int)line.getX1() + (fpoint.x - spoint.x), (int)line.getY1() + (fpoint.y - spoint.y));
-        Point endPoint = new Point((int)line.getX2() + (fpoint.x - spoint.x),(int)line.getY2() + (fpoint.y - spoint.y));
+        Point startPoint = new Point((int)line.getX1() + (fpoint.x - spoint.x),
+                (int)line.getY1() + (fpoint.y - spoint.y));
+        Point endPoint = new Point((int)line.getX2() + (fpoint.x - spoint.x),
+                (int)line.getY2() + (fpoint.y - spoint.y));
         Line2D ln = new Line2D.Double(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
         this.setLine(ln);
     }
@@ -63,7 +68,9 @@ public class Line implements ConnectorLinePlot {
             }
 
             b.write(getClass().getSimpleName() + " ");
-            b.write((getLine().getX1())/GUI.canvas.getWidth() + " " + (getLine().getY1())/GUI.canvas.getHeight() + " " + (getLine().getX2())/GUI.canvas.getWidth() + " " + (getLine().getY2())/GUI.canvas.getHeight());
+            b.write((getLine().getX1())/GUI.canvas.getWidth() + " " +
+                    (getLine().getY1())/GUI.canvas.getHeight() + " " +
+                    (getLine().getX2())/GUI.canvas.getWidth() + " " + (getLine().getY2())/GUI.canvas.getHeight());
 
         } catch (IOException e) {
             e.printStackTrace();

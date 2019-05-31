@@ -114,7 +114,8 @@ public class Polygon implements ConnectorRecEllipsePoly {
             b.write(getClass().getSimpleName() + " ");
 
             for (int i=0;i < polygon.npoints -1 ; i++){
-                b.write((double)polygon.xpoints[i]/GUI.canvas.getWidth() + " " + (double)polygon.ypoints[i]/GUI.canvas.getHeight() + " ");
+                b.write((double)polygon.xpoints[i]/GUI.canvas.getWidth() + " " +
+                        (double)polygon.ypoints[i]/GUI.canvas.getHeight() + " ");
             }
 
         } catch (IOException e) {

@@ -33,7 +33,8 @@ public class Rectangle implements ConnectorRecEllipsePoly {
         x2 = fpoint.x;
         y2 = fpoint.y;
         setLineColor(GUI.colour);
-        java.awt.Rectangle r = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
+        java.awt.Rectangle r = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y),
+                Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
         this.setRect(r);
     }
 
@@ -41,13 +42,16 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     public void draw(GraphicsAdapter g) {
         if(getColor() == null){
             g.getGraphicAdapter().setColor(this.getLineColor());
-            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
         }
         else{
             g.getGraphicAdapter().setColor(this.getColor());
-            g.getGraphicAdapter().fillRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().fillRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
             g.getGraphicAdapter().setColor(this.getLineColor());
-            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
         }
     }
     @Override
@@ -60,7 +64,8 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     }
     @Override
     public void move(Point startDrag, Point endDrag){
-        java.awt.Rectangle r = new java.awt.Rectangle(this.getRect().x + (endDrag.x - startDrag.x),this.getRect().y + (endDrag.y - startDrag.y), this.getRect().width, this.getRect().height);
+        java.awt.Rectangle r = new java.awt.Rectangle(this.getRect().x + (endDrag.x - startDrag.x),
+                this.getRect().y + (endDrag.y - startDrag.y), this.getRect().width, this.getRect().height);
         this.setRect(r);
     }
 
@@ -101,7 +106,8 @@ public class Rectangle implements ConnectorRecEllipsePoly {
                 }
             }
             b.write(getClass().getSimpleName() + " ");
-            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/ GUI.canvas.getWidth()) + " " + (double)(y2/ GUI.canvas.getHeight()) );
+            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " +
+                    (double)(x2/ GUI.canvas.getWidth()) + " " + (double)(y2/ GUI.canvas.getHeight()) );
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -37,7 +37,8 @@ public class Ellipse implements ConnectorRecEllipsePoly {
         x2 = fpoint.x;
         y2 = fpoint.y;
         setLineColor(GUI.colour);
-        Ellipse2D r = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
+        Ellipse2D r = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y),
+                Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
         this.setElip2d(r);
     }
 
@@ -46,13 +47,16 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     public void draw(GraphicsAdapter g) {
         if(getColor() == null){
             g.getGraphicAdapter().setColor(getLineColor());
-            g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
+            g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(),
+                    (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
         }
         else{
             g.getGraphicAdapter().setColor(getColor());
-            g.getGraphicAdapter().fillOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
+            g.getGraphicAdapter().fillOval((int)getElip2d().getX(),(int)getElip2d().getY(),
+                    (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
             g.getGraphicAdapter().setColor(this.getLineColor());
-            g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(), (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
+            g.getGraphicAdapter().drawOval((int)getElip2d().getX(),(int)getElip2d().getY(),
+                    (int)getElip2d().getWidth(), (int)getElip2d().getHeight());
         }
     }
     @Override
@@ -65,7 +69,9 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     }
     @Override
     public void move(Point startDrag, Point endDrag){
-        this.getElip2d().setFrame(getElip2d().getX() + endDrag.x - startDrag.x,this.getElip2d().getY() + endDrag.y - startDrag.y,this.getElip2d().getWidth(), this.getElip2d().getHeight());
+        this.getElip2d().setFrame(getElip2d().getX() + endDrag.x - startDrag.x,
+                this.getElip2d().getY() + endDrag.y - startDrag.y,
+                this.getElip2d().getWidth(), this.getElip2d().getHeight());
     }
 
     @Override
@@ -108,7 +114,8 @@ public class Ellipse implements ConnectorRecEllipsePoly {
                 }
             }
             b.write(getClass().getSimpleName() + " ");
-            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/GUI.canvas.getWidth()) + " " + (double)(y2/GUI.canvas.getHeight()) );
+            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " +
+                    (double)(x2/GUI.canvas.getWidth()) + " " + (double)(y2/GUI.canvas.getHeight()) );
         } catch (IOException e) {
             e.printStackTrace();
         }

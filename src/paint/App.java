@@ -203,12 +203,15 @@ public class App extends JComponent {
                     if (r.contains(spoint)) {
                         if (r.getColor() == null) {
                             g2.getGraphicAdapter().setColor(r.getLineColor());
-                            g2.getGraphicAdapter().drawRect(r.getRect().x + fpoint.x - spoint.x, r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
+                            g2.getGraphicAdapter().drawRect(r.getRect().x + fpoint.x - spoint.x,
+                                    r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
                         } else {
                             g2.getGraphicAdapter().setColor(r.getColor());
-                            g2.getGraphicAdapter().fillRect(r.getRect().x + fpoint.x - spoint.x, r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
+                            g2.getGraphicAdapter().fillRect(r.getRect().x + fpoint.x - spoint.x,
+                                    r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
                             g2.getGraphicAdapter().setColor(r.getLineColor());
-                            g2.getGraphicAdapter().drawRect(r.getRect().x + fpoint.x - spoint.x, r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
+                            g2.getGraphicAdapter().drawRect(r.getRect().x + fpoint.x - spoint.x,
+                                    r.getRect().y + fpoint.y - spoint.y, r.getRect().width, r.getRect().height);
                         }
                     }
                 } else if (currentPaint instanceof Ellipse) {
@@ -216,19 +219,29 @@ public class App extends JComponent {
                     if (oval.contains(spoint)) {
                         if (oval.getColor() == null) {
                             g2.getGraphicAdapter().setColor(oval.getLineColor());
-                            g2.getGraphicAdapter().drawOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x), (int) (oval.getElip2d().getY() + fpoint.y - spoint.y), (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
+                            g2.getGraphicAdapter().drawOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x),
+                                    (int) (oval.getElip2d().getY() + fpoint.y - spoint.y),
+                                    (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
                         } else {
                             g2.getGraphicAdapter().setColor(oval.getColor());
-                            g2.getGraphicAdapter().fillOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x), (int) (oval.getElip2d().getY() + fpoint.y - spoint.y), (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
+                            g2.getGraphicAdapter().fillOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x),
+                                    (int) (oval.getElip2d().getY() + fpoint.y - spoint.y),
+                                    (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
                             g2.getGraphicAdapter().setColor(oval.getLineColor());
-                            g2.getGraphicAdapter().drawOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x), (int) (oval.getElip2d().getY() + fpoint.y - spoint.y), (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
+                            g2.getGraphicAdapter().drawOval((int) (oval.getElip2d().getX() + fpoint.x - spoint.x),
+                                    (int) (oval.getElip2d().getY() + fpoint.y - spoint.y),
+                                    (int) oval.getElip2d().getWidth(), (int) oval.getElip2d().getHeight());
                         }
                     }
                 } else if (currentPaint instanceof Polygon) {
                     Polygon polygon = (Polygon) currentPaint;
                     if (polygon.contains(spoint)) {
-                        int[]x = {polygon.getPolygon().xpoints[0] + fpoint.x - spoint.x,polygon.getPolygon().xpoints[1] + fpoint.x - spoint.x, polygon.getPolygon().xpoints[2] + fpoint.x - spoint.x};
-                        int[]y = {polygon.getPolygon().ypoints[0] + fpoint.y - spoint.y,polygon.getPolygon().ypoints[1] + fpoint.y - spoint.y, polygon.getPolygon().ypoints[2] + fpoint.y - spoint.y};
+                        int[]x = {polygon.getPolygon().xpoints[0] + fpoint.x - spoint.x,
+                                polygon.getPolygon().xpoints[1] + fpoint.x - spoint.x,
+                                polygon.getPolygon().xpoints[2] + fpoint.x - spoint.x};
+                        int[]y = {polygon.getPolygon().ypoints[0] + fpoint.y - spoint.y,
+                                polygon.getPolygon().ypoints[1] + fpoint.y - spoint.y,
+                                polygon.getPolygon().ypoints[2] + fpoint.y - spoint.y};
                         if (polygon.getColor() == null) {
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
@@ -239,7 +252,24 @@ public class App extends JComponent {
                             g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
                         }
                     }
-
+                } else if (currentPaint instanceof Line) {
+                    Line line = (Line) currentPaint;
+                    if (line.contains(spoint)) {
+                        g2.getGraphicAdapter().setColor(line.getColor());
+                        g2.getGraphicAdapter().drawLine((int) line.getLine().getX1() + fpoint.x - spoint.x,
+                                (int) line.getLine().getY1() + fpoint.y - spoint.y,
+                                (int) line.getLine().getX2() + fpoint.x - spoint.x,
+                                (int) line.getLine().getY2() + fpoint.y - spoint.y);
+                    }
+                } else if (currentPaint instanceof Plot) {
+                    Plot plot = (Plot) currentPaint;
+                    if (plot.contains(spoint)) {
+                        g2.getGraphicAdapter().setColor(plot.getColor());
+                        g2.getGraphicAdapter().drawLine(plot.getPoint().x  + fpoint.x - spoint.x,
+                                plot.getPoint().y + fpoint.y - spoint.y,
+                                plot.getPoint().x + fpoint.x - spoint.x,
+                                plot.getPoint().y + fpoint.y - spoint.y);
+                    }
                 }
             }
         }
