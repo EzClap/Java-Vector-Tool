@@ -3,7 +3,6 @@ import paint.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.Polygon;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import java.io.*;
@@ -1229,7 +1228,7 @@ class UnitTest {
     }
 
     @Test
-    void testEllipseWritetoFile1() {
+    void testEllipseWriteToFile1() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -1255,16 +1254,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL OFF\nEllipse " + (double)(x1/GUI.canvas.getWidth())
-                    + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/GUI.canvas.getWidth())
-                    + " " + (double)(y2/GUI.canvas.getHeight()));
+            expect.write("PEN #000000\nFILL OFF\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -1293,7 +1294,7 @@ class UnitTest {
     }
 
     @Test
-    void testEllipseWritetoFile2() {
+    void testEllipseWriteToFile2() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -1320,16 +1321,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL #1258a4\nEllipse " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #000000\nFILL #1258a4\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -1358,7 +1361,7 @@ class UnitTest {
     }
 
     @Test
-    void testEllipseWritetoFile3() {
+    void testEllipseWriteToFile3() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -1385,16 +1388,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #56df75\nFILL OFF\nEllipse " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #56df75\nFILL OFF\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -1423,7 +1428,7 @@ class UnitTest {
     }
 
     @Test
-    void testEllipseWritetoFile4() {
+    void testEllipseWriteToFile4() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -1451,16 +1456,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #aedd88\nFILL #ffafaf\nEllipse " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #aedd88\nFILL #ffafaf\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -1469,6 +1476,203 @@ class UnitTest {
 
             String tActual = brActual.readLine();
             while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testEllipseWriteToFile5() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        Ellipse obj = new Ellipse();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, Color.ORANGE);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("FILL OFF\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testEllipseWriteToFile6() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        Ellipse obj = new Ellipse();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #000000\nELLIPSE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testEllipseWriteToFile7() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        Ellipse obj = new Ellipse();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("ELLIPSE " + String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
                 sActual += tActual + "\n";
                 tActual = brActual.readLine();
             }
@@ -2258,7 +2462,7 @@ class UnitTest {
     }
 
     @Test
-    void testRectangleWritetoFile1() {
+    void testRectangleWriteToFile1() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -2284,16 +2488,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL OFF\nRectangle " + (double)(x1/GUI.canvas.getWidth())
-                    + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/GUI.canvas.getWidth())
-                    + " " + (double)(y2/GUI.canvas.getHeight()));
+            expect.write("PEN #000000\nFILL OFF\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -2322,7 +2528,7 @@ class UnitTest {
     }
 
     @Test
-    void testRectangleWritetoFile2() {
+    void testRectangleWriteToFile2() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -2349,16 +2555,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL #1258a4\nRectangle " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #000000\nFILL #1258a4\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -2387,7 +2595,7 @@ class UnitTest {
     }
 
     @Test
-    void testRectangleWritetoFile3() {
+    void testRectangleWriteToFile3() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -2414,16 +2622,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #56df75\nFILL OFF\nRectangle " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #56df75\nFILL OFF\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -2480,16 +2690,18 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #aedd88\nFILL #ffafaf\nRectangle " + (double) (x1 / GUI.canvas.getWidth())
-                    + " " + (double) (y1 / GUI.canvas.getHeight()) + " " + (double) (x2 / GUI.canvas.getWidth())
-                    + " " + (double) (y2 / GUI.canvas.getHeight()));
+            expect.write("PEN #aedd88\nFILL #ffafaf\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
             expect.close();
 
 
@@ -2498,6 +2710,204 @@ class UnitTest {
 
             String tActual = brActual.readLine();
             while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testRectangleWriteToFile5() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        paint.Rectangle obj = new paint.Rectangle();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #000000\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testRectangleWriteToFile6() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        paint.Rectangle obj = new paint.Rectangle();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, Color.ORANGE);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("FILL OFF\nRECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testRectangleWriteToFile7() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        double x1 = spoint.x;
+        double y1 = spoint.y;
+        double x2 = fpoint.x;
+        double y2 = fpoint.y;
+
+        paint.Rectangle obj = new paint.Rectangle();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("RECTANGLE " +
+                    String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
                 sActual += tActual + "\n";
                 tActual = brActual.readLine();
             }
@@ -2944,7 +3354,7 @@ class UnitTest {
     }
 
     @Test
-    void testPlotWritetoFile1() {
+    void testPlotWriteToFile1() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -2965,15 +3375,16 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nPlot " + (double)(obj.getPoint().x)/GUI.canvas.getWidth() + " " +
-                    (double)(obj.getPoint().y)/GUI.canvas.getHeight());
+            expect.write("PEN #000000\nPLOT " +
+                    String.format("%.8f",(double)(obj.getPoint().x)/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(obj.getPoint().y)/GUI.canvas.getHeight()));
             expect.close();
 
 
@@ -3002,7 +3413,7 @@ class UnitTest {
     }
 
     @Test
-    void testPlotWritetoFile2() {
+    void testPlotWriteToFile2() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -3024,15 +3435,16 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #1258a4\nPlot " + (double)(obj.getPoint().x)/GUI.canvas.getWidth() + " " +
-                    (double)(obj.getPoint().y)/GUI.canvas.getHeight());
+            expect.write("PEN #1258a4\nPLOT " +
+                    String.format("%.8f",(double)(obj.getPoint().x)/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(obj.getPoint().y)/GUI.canvas.getHeight()));
             expect.close();
 
 
@@ -3041,6 +3453,65 @@ class UnitTest {
 
             String tActual = brActual.readLine();
             while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPlotWriteToFile3() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        Plot obj = new Plot();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, Color.ORANGE);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PLOT " +
+                    String.format("%.8f",(double)(obj.getPoint().x)/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(obj.getPoint().y)/GUI.canvas.getHeight()));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
                 sActual += tActual + "\n";
                 tActual = brActual.readLine();
             }
@@ -3968,7 +4439,7 @@ class UnitTest {
     }
 
     @Test
-    void testLineWritetoFile1() {
+    void testLineWriteToFile1() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -3989,17 +4460,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nLine " + (obj.getLine().getX1())/GUI.canvas.getWidth()
-                    + " " + (obj.getLine().getY1())/GUI.canvas.getHeight()
-                    + " " + (obj.getLine().getX2())/GUI.canvas.getWidth()
-                    + " " + (obj.getLine().getY2())/GUI.canvas.getHeight());
+            expect.write("PEN #000000\nLINE " + String.format("%.8f",(obj.getLine().getX1())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY1())/GUI.canvas.getHeight())
+                    + " " + String.format("%.8f",(obj.getLine().getX2())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY2())/GUI.canvas.getHeight()));
             expect.close();
 
 
@@ -4028,7 +4499,7 @@ class UnitTest {
     }
 
     @Test
-    void testLineWritetoFile2() {
+    void testLineWriteToFile2() {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
@@ -4050,17 +4521,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #1258a4\nLine " + (obj.getLine().getX1())/GUI.canvas.getWidth()
-                    + " " + (obj.getLine().getY1())/GUI.canvas.getHeight()
-                    + " " + (obj.getLine().getX2())/GUI.canvas.getWidth()
-                    + " " + (obj.getLine().getY2())/GUI.canvas.getHeight());
+            expect.write("PEN #1258a4\nLINE " + String.format("%.8f",(obj.getLine().getX1())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY1())/GUI.canvas.getHeight())
+                    + " " + String.format("%.8f",(obj.getLine().getX2())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY2())/GUI.canvas.getHeight()));
             expect.close();
 
 
@@ -4069,6 +4540,66 @@ class UnitTest {
 
             String tActual = brActual.readLine();
             while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testLineWriteToFile3() {
+        Random r = new Random();
+        Point spoint = new Point();
+        Point fpoint = new Point();
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
+
+        GUI.canvas = new JPanel();
+        GUI.canvas.setSize(500, 500);
+
+        Line obj = new Line();
+        obj.makeObject(spoint, fpoint);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, Color.ORANGE);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("LINE " + String.format("%.8f",(obj.getLine().getX1())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY1())/GUI.canvas.getHeight())
+                    + " " + String.format("%.8f",(obj.getLine().getX2())/GUI.canvas.getWidth())
+                    + " " + String.format("%.8f",(obj.getLine().getY2())/GUI.canvas.getHeight()));
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
                 sActual += tActual + "\n";
                 tActual = brActual.readLine();
             }
@@ -4968,7 +5499,7 @@ class UnitTest {
 
 
     @Test
-    void testPolygonWritetoFile1() {
+    void testPolygonWriteToFile1() {
         Random r = new Random();
         paint.Polygon obj = new paint.Polygon();
         int size = r.nextInt(12) + 3;
@@ -4989,17 +5520,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL OFF\nPolygon ");
+            expect.write("PEN #000000\nFILL OFF\nPOLYGON ");
             for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
-                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
-                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
             }
             expect.close();
 
@@ -5029,7 +5560,7 @@ class UnitTest {
     }
 
     @Test
-    void testPolygonWritetoFile2() {
+    void testPolygonWriteToFile2() {
         Random r = new Random();
         paint.Polygon obj = new paint.Polygon();
         int size = r.nextInt(12) + 3;
@@ -5051,17 +5582,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #000000\nFILL #1258a4\nPolygon ");
+            expect.write("PEN #000000\nFILL #1258a4\nPOLYGON ");
             for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
-                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
-                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
             }
             expect.close();
 
@@ -5091,7 +5622,7 @@ class UnitTest {
     }
 
     @Test
-    void testPolygonWritetoFile3() {
+    void testPolygonWriteToFile3() {
         Random r = new Random();
         paint.Polygon obj = new paint.Polygon();
         int size = r.nextInt(12) + 3;
@@ -5113,17 +5644,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #56df75\nFILL OFF\nPolygon ");
+            expect.write("PEN #56df75\nFILL OFF\nPOLYGON ");
             for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
-                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
-                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
             }
             expect.close();
 
@@ -5153,7 +5684,7 @@ class UnitTest {
     }
 
     @Test
-    void testPolygonWritetoFile4() {
+    void testPolygonWriteToFile4() {
         Random r = new Random();
         paint.Polygon obj = new paint.Polygon();
         int size = r.nextInt(12) + 3;
@@ -5176,17 +5707,17 @@ class UnitTest {
             FileWriter fwActual = new FileWriter(fileActual);
 
             BufferedWriter actual = new BufferedWriter(fwActual);
-            obj.writetoFile(actual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, Color.ORANGE);
             actual.close();
 
             File fileExpect = new File("file2.txt");
             FileWriter fwExpect = new FileWriter(fileExpect);
 
             BufferedWriter expect = new BufferedWriter(fwExpect);
-            expect.write("PEN #aedd88\nFILL #ffafaf\nPolygon ");
+            expect.write("PEN #aedd88\nFILL #ffafaf\nPOLYGON ");
             for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
-                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
-                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
             }
             expect.close();
 
@@ -5196,6 +5727,189 @@ class UnitTest {
 
             String tActual = brActual.readLine();
             while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWriteToFile5() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.LIGHT_GRAY, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #000000\nPOLYGON ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWriteToFile6() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, Color.ORANGE);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("FILL OFF\nPOLYGON ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWriteToFile7() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual, Color.BLACK, null);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("POLYGON ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write(String.format("%.8f",(double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight()) + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
                 sActual += tActual + "\n";
                 tActual = brActual.readLine();
             }

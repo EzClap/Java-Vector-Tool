@@ -77,47 +77,52 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     }
 
     @Override
-    public void writetoFile(BufferedWriter b){
+    public void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor){
         try {
-            if (getLineColor().getRed()<17 ){
-                b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
-            }else{
-                b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
-            }
-            if (getLineColor().getGreen() <17){
-                b.write("0" + Integer.toHexString(getLineColor().getGreen()));
-            }else{
-                b.write(Integer.toHexString(getLineColor().getGreen()));
-            }
-            if (getLineColor().getBlue()<17){
-                b.write("0" + Integer.toHexString(getLineColor().getBlue())+"\n");
-            }else{
-                b.write(Integer.toHexString(getLineColor().getBlue())+"\n");
+            if (prevLColor != getLineColor()) {
+                if (getLineColor().getRed() < 17) {
+                    b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
+                } else {
+                    b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
+                }
+                if (getLineColor().getGreen() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getGreen()));
+                } else {
+                    b.write(Integer.toHexString(getLineColor().getGreen()));
+                }
+                if (getLineColor().getBlue() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getBlue()) + "\n");
+                } else {
+                    b.write(Integer.toHexString(getLineColor().getBlue()) + "\n");
+                }
             }
 
-
-            if(getColor()==null){
-                b.write("FILL OFF\n");
-            }else{
-                if (getColor().getRed()<17 ){
-                    b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
-                }else{
-                    b.write("FILL #" + Integer.toHexString(getColor().getRed()));
-                }
-                if (getColor().getGreen() <17){
-                    b.write("0" + Integer.toHexString(getColor().getGreen()));
-                }else{
-                    b.write(Integer.toHexString(getColor().getGreen()));
-                }
-                if (getColor().getBlue()<17){
-                    b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
-                }else{
-                    b.write(Integer.toHexString(getColor().getBlue())+"\n");
+            if (prevFColor != getColor()) {
+                if (getColor() == null) {
+                    b.write("FILL OFF\n");
+                } else {
+                    if (getColor().getRed() < 17) {
+                        b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+                    } else {
+                        b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                    }
+                    if (getColor().getGreen() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getGreen()));
+                    } else {
+                        b.write(Integer.toHexString(getColor().getGreen()));
+                    }
+                    if (getColor().getBlue() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                    } else {
+                        b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                    }
                 }
             }
-            b.write(getClass().getSimpleName() + " ");
-            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " +
-                    (double)(x2/GUI.canvas.getWidth()) + " " + (double)(y2/GUI.canvas.getHeight()) );
+            b.write(getClass().getSimpleName().toUpperCase() + " ");
+            b.write(String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/GUI.canvas.getHeight())));
         } catch (IOException e) {
             e.printStackTrace();
         }

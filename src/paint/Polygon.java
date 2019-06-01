@@ -75,47 +75,52 @@ public class Polygon implements ConnectorRecEllipsePoly {
         this.setPolygon(p);
     }
     @Override
-    public void writetoFile(BufferedWriter b){
+    public void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor){
         try {
-            if (getLineColor().getRed()<17 ){
-                b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
-            }else{
-                b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
-            }
-            if (getLineColor().getGreen() <17){
-                b.write("0" + Integer.toHexString(getLineColor().getGreen()));
-            }else{
-                b.write(Integer.toHexString(getLineColor().getGreen()));
-            }
-            if (getLineColor().getBlue()<17){
-                b.write("0" + Integer.toHexString(getLineColor().getBlue())+"\n");
-            }else{
-                b.write(Integer.toHexString(getLineColor().getBlue())+"\n");
-            }
-            if(getColor()==null){
-                b.write("FILL OFF\n");
-            } else {
-                if (getColor().getRed() < 17) {
-                    b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+            if (prevLColor != getLineColor()) {
+                if (getLineColor().getRed() < 17) {
+                    b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
                 } else {
-                    b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                    b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
                 }
-                if (getColor().getGreen() < 17) {
-                    b.write("0" + Integer.toHexString(getColor().getGreen()));
+                if (getLineColor().getGreen() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getGreen()));
                 } else {
-                    b.write(Integer.toHexString(getColor().getGreen()));
+                    b.write(Integer.toHexString(getLineColor().getGreen()));
                 }
-                if (getColor().getBlue() < 17) {
-                    b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                if (getLineColor().getBlue() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getBlue()) + "\n");
                 } else {
-                    b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                    b.write(Integer.toHexString(getLineColor().getBlue()) + "\n");
                 }
             }
-            b.write(getClass().getSimpleName() + " ");
+
+            if (prevFColor != getColor()) {
+                if (getColor() == null) {
+                    b.write("FILL OFF\n");
+                } else {
+                    if (getColor().getRed() < 17) {
+                        b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+                    } else {
+                        b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                    }
+                    if (getColor().getGreen() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getGreen()));
+                    } else {
+                        b.write(Integer.toHexString(getColor().getGreen()));
+                    }
+                    if (getColor().getBlue() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                    } else {
+                        b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                    }
+                }
+            }
+            b.write(getClass().getSimpleName().toUpperCase() + " ");
 
             for (int i=0;i < polygon.npoints -1 ; i++){
-                b.write((double)polygon.xpoints[i]/GUI.canvas.getWidth() + " " +
-                        (double)polygon.ypoints[i]/GUI.canvas.getHeight() + " ");
+                b.write(String.format("%.8f",(double)polygon.xpoints[i]/GUI.canvas.getWidth()) + " " +
+                        String.format("%.8f",(double)polygon.ypoints[i]/GUI.canvas.getHeight()) + " ");
             }
 
         } catch (IOException e) {

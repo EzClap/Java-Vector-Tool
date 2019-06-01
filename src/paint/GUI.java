@@ -215,7 +215,7 @@ public class GUI extends JFrame {
         });
         addToPanel(panel, btnLine, constraints, 0,2,2,1);
 
-        //Create Rectangel button
+        //Create Rectangle button
         JButton btnRect = new JButton("Rectangle");
         btnRect.addActionListener(new ActionListener() {
             @Override
