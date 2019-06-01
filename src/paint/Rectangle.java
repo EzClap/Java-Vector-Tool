@@ -64,8 +64,11 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     }
     @Override
     public void move(Point startDrag, Point endDrag){
-        java.awt.Rectangle r = new java.awt.Rectangle(this.getRect().x + (endDrag.x - startDrag.x),
-                this.getRect().y + (endDrag.y - startDrag.y), this.getRect().width, this.getRect().height);
+        x1 = this.getRect().x + (endDrag.x - startDrag.x);
+        y1 = this.getRect().y + (endDrag.y - startDrag.y);
+        x2 = x1 + this.getRect().getWidth();
+        y2 = y1 + this.getRect().getHeight();
+        java.awt.Rectangle r = new java.awt.Rectangle((int)x1, (int)y1, this.getRect().width, this.getRect().height);
         this.setRect(r);
     }
 

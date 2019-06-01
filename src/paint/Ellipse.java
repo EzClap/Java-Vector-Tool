@@ -69,9 +69,11 @@ public class Ellipse implements ConnectorRecEllipsePoly {
     }
     @Override
     public void move(Point startDrag, Point endDrag){
-        this.getElip2d().setFrame(getElip2d().getX() + endDrag.x - startDrag.x,
-                this.getElip2d().getY() + endDrag.y - startDrag.y,
-                this.getElip2d().getWidth(), this.getElip2d().getHeight());
+        x1 = this.getElip2d().getX() + endDrag.x - startDrag.x;
+        y1 = this.getElip2d().getY() + endDrag.y - startDrag.y;
+        x2 = x1 + this.getElip2d().getWidth();
+        y2 = y1 + this.getElip2d().getHeight();
+        this.getElip2d().setFrame(x1, y1, this.getElip2d().getWidth(), this.getElip2d().getHeight());
     }
 
     @Override

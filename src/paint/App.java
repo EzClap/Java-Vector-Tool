@@ -128,6 +128,10 @@ public class App extends JComponent {
             public void mouseDragged(MouseEvent e) {
                 fpoint = new Point(e.getX(), e.getY());
                 repaint();
+
+                if (GUI.shape == "move") {
+
+                }
             }
 
             public void mouseMoved(MouseEvent e) {
@@ -246,20 +250,22 @@ public class App extends JComponent {
                 } else if (currentPaint instanceof Polygon) {
                     Polygon polygon = (Polygon) currentPaint;
                     if (polygon.contains(spoint)) {
-                        int[]x = {polygon.getPolygon().xpoints[0] + fpoint.x - spoint.x,
-                                polygon.getPolygon().xpoints[1] + fpoint.x - spoint.x,
-                                polygon.getPolygon().xpoints[2] + fpoint.x - spoint.x};
-                        int[]y = {polygon.getPolygon().ypoints[0] + fpoint.y - spoint.y,
-                                polygon.getPolygon().ypoints[1] + fpoint.y - spoint.y,
-                                polygon.getPolygon().ypoints[2] + fpoint.y - spoint.y};
+                        int size = polygon.getPolygon().npoints;
+                        int[] x = new int[size];
+                        int[] y = new int[size];
+                        for (int i = 0; i < size; i ++) {
+                            x[i] = polygon.getPolygon().xpoints[i] + (fpoint.x - spoint.x);
+                            y[i] = polygon.getPolygon().ypoints[i] + (fpoint.y - spoint.y);
+                        }
+
                         if (polygon.getColor() == null) {
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
-                            g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
+                            g2.getGraphicAdapter().drawPolygon(x, y, size);
                         } else {
                             g2.getGraphicAdapter().setColor(polygon.getColor());
-                            g2.getGraphicAdapter().fillPolygon(polygon.getPolygon());
+                            g2.getGraphicAdapter().fillPolygon(x, y, size);
                             g2.getGraphicAdapter().setColor(polygon.getLineColor());
-                            g2.getGraphicAdapter().drawPolygon(polygon.getPolygon());
+                            g2.getGraphicAdapter().drawPolygon(x, y, size);
                         }
                     }
                 } else if (currentPaint instanceof Line) {
