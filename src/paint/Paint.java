@@ -13,4 +13,5 @@ public interface Paint {
     void move(Point startDrag, Point endDrag);
     void writetoFile(BufferedWriter b);
     void makeObject(Point startDrag, Point endDrag);
+    String getName();
 }

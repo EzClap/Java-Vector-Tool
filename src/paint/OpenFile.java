@@ -72,8 +72,7 @@ public class OpenFile extends JFrame {
                                 r.setLineColor(lineColour);
                                 r.setColor(fillColour);
                                 GUI.objects.add(r);
-                                System.out.println(GUI.canvas.getWidth());
-                                System.out.println(GUI.canvas.getHeight());
+
                                 //if polygon get the points and parse them into the makeobject method
                             } else if (a[0].equals("POLYGON")||a[0].equals("Polygon")){
                                 Polygon r = new Polygon();
@@ -92,8 +91,6 @@ public class OpenFile extends JFrame {
                                 }
                                 xpoints.add(xpoints.get(0));
                                 ypoints.add(ypoints.get(0));
-                                System.out.println(xpoints);
-                                System.out.println(ypoints);
                                 r.makeObject(xpoints,ypoints);
                                 r.setLineColor(lineColour);
                                 r.setColor(fillColour);

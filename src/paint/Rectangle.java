@@ -99,6 +99,10 @@ public class Rectangle implements ExtendingFill {
      */
     @Override
     public void move(Point spoint, Point fpoint){
+        x1 = this.getRect().x + (fpoint.x - spoint.x);
+        y1 = this.getRect().y + (fpoint.y - spoint.y);
+        x2 = x1 + this.getRect().getWidth();
+        y2 = y1 + this.getRect().getHeight();
         java.awt.Rectangle r = new java.awt.Rectangle(this.getRect().x + (fpoint.x - spoint.x),this.getRect().y +
                 (fpoint.y - spoint.y), this.getRect().width, this.getRect().height);
         this.setRect(r);
@@ -199,5 +203,9 @@ public class Rectangle implements ExtendingFill {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getName(){
+        return (getClass().getSimpleName());
     }
 }

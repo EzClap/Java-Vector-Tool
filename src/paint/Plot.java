@@ -134,4 +134,8 @@ public class Plot implements Paint {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public String getName(){
+        return (getClass().getSimpleName());
+    }
 }

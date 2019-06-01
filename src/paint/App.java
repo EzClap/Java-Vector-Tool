@@ -1,13 +1,12 @@
 package paint;
 
-import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.BasicStroke;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseAdapter;
+import java.awt.*;
+import java.awt.event.*;
 import java.util.ArrayList;
-import javax.swing.JComponent;
+import java.util.Collections;
+import java.util.Vector;
+import javax.swing.*;
+import javax.swing.event.ListDataListener;
 
 /**
  * app class manages all the clicks in the canvas and draws according to what the 'shape' variable is reading
@@ -34,18 +33,20 @@ public class App extends JComponent {
              * is 'delete', 'move', or 'polygon' it will do those actions respectively.
              * @param e the mouse event
              */
+            String count = "a";
             public void mousePressed(MouseEvent e) {
                 spoint = new Point(e.getX(), e.getY());
                 fpoint = spoint;
+
                 if (GUI.shape == "move") {
                     for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.objects.get(i);
-                        if (pt.contains(spoint)) {
-                            currentPaint = pt;
-                            GUI.objects.remove(pt);
-                            break;
+                            if (pt.contains(spoint)) {
+                                currentPaint = pt;
+                                GUI.objects.remove(pt);
+                                break;
+                            }
                         }
-                    }
                 } else if (GUI.shape == "Delete") {
                     for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.objects.get(i);
@@ -55,6 +56,7 @@ public class App extends JComponent {
                             break;
                         }
                     }
+
                 } else if (GUI.shape == "Polygon") {
                     polyPoint.add(spoint);
                     polyIndex = polyPoint.indexOf(spoint);
@@ -81,6 +83,7 @@ public class App extends JComponent {
                             Polygon obj = new Polygon();
                             obj.makeObject(polyX, polyY);
                             GUI.objects.add(obj);
+
                             repaint();
                         }
                         else if (GUI.shape != "Polygon"){
@@ -88,7 +91,8 @@ public class App extends JComponent {
                         }
                     }
                 }
-               // GUI.updateComboBox();
+                GUI.updateComboBox();
+                repaint();
             }
 
             /**
@@ -103,18 +107,22 @@ public class App extends JComponent {
                     Rectangle obj = new Rectangle();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
+                    GUI.updateComboBox();
                 } else if (GUI.shape == "Line") {
                     Line obj = new Line();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
+                    GUI.updateComboBox();
                 } else if (GUI.shape == "Ellipse") {
                     Ellipse obj = new Ellipse();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
+                    GUI.updateComboBox();
                 } else if (GUI.shape == "Plot") {
                     Plot obj = new Plot();
                     obj.makeObject(spoint, p);
                     GUI.objects.add(obj);
+                    GUI.updateComboBox();
                 } else if (GUI.shape == "fill") {
                     for (int i = GUI.objects.size() - 1; i >= 0; i = i - 1) {
                         Paint pt = GUI.objects.get(i);
@@ -131,15 +139,20 @@ public class App extends JComponent {
                         }
                     }
                 } else if (GUI.shape == "move") {
-                    if (currentPaint.contains(spoint)) {
-                        currentPaint.move(spoint, p);
-                        GUI.objects.add(currentPaint);
+                    try {
+                        if (currentPaint.contains(spoint)) {
+                            currentPaint.move(spoint, p);
+                            GUI.objects.add(currentPaint);
+                        }
+                    }catch(Exception err1){
+                        System.out.println("You tried to move where there was no shape, lines and plots cannot be moved");
                     }
                 }
                 if (GUI.shape != "Polygon") {
                     spoint = null;
                     fpoint = null;
                 }
+
                 repaint();
             }
         });
@@ -170,7 +183,10 @@ public class App extends JComponent {
                 }
             }
         });
+
     }
+
+
 
     /**
      * paint, paints the objects based off they points that have be declared and set in the about mouse app constructor.
@@ -183,9 +199,11 @@ public class App extends JComponent {
         strokeSize = new BasicStroke(4);
         g2.getGraphicAdapter().setStroke(strokeSize);
 
+
         //draw all the objects in the arraylist
         for (Paint pt : GUI.objects) {
             pt.draw(g2);
+
         }
 
         //if polygon is half way through drawing and another button is clicked the polygon automatically finishes
@@ -199,6 +217,8 @@ public class App extends JComponent {
                 polyX.add(i,polyPoint.get(i).x);
                 polyY.add(i, polyPoint.get(i).y);
             }
+            polyX.add(polyPoint.get(0).x);
+            polyY.add(polyPoint.get(0).y);
             polyPoint.clear();
             polyIndex = 0;
             polyPointEnd.clear();
@@ -300,7 +320,9 @@ public class App extends JComponent {
                     }
 
                 }
+
             }
+
         }
     }
 }

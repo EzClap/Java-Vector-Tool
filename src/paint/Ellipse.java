@@ -101,6 +101,10 @@ public class Ellipse implements ExtendingFill {
      */
     @Override
     public void move(Point spoint, Point fpoint){
+        x1 = this.getElip2d().getX() + fpoint.x - spoint.x;
+        y1 = this.getElip2d().getY() + fpoint.y - spoint.y;
+        x2 = x1 + this.getElip2d().getWidth();
+        y2 = y1 + this.getElip2d().getHeight();
         this.getElip2d().setFrame(getElip2d().getX() + fpoint.x - spoint.x,this.getElip2d().getY() +
                 fpoint.y - spoint.y,this.getElip2d().getWidth(), this.getElip2d().getHeight());
     }
@@ -203,5 +207,9 @@ public class Ellipse implements ExtendingFill {
      */
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public String getName(){
+        return (getClass().getSimpleName());
     }
 }

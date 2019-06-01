@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import javax.swing.border.EmptyBorder;
-//import javax.swing.undo.UndoManager;
 import java.util.ArrayList;
 import java.awt.event.MouseEvent;
+import java.util.Collections;
+
 
 /**
  * This class runs the program, and contains the 'objects' arraylist which contains all the shapes that are drawn,
@@ -24,6 +25,8 @@ public class GUI extends JFrame {
     public GridBagLayout layout = new GridBagLayout();
     public GridBagConstraints constraints = new GridBagConstraints();
     public static GUI app;
+    public static JComboBox<String>undoHistory = new JComboBox();
+    public static ArrayList<String> undoShapes = new ArrayList<>();
 
     /**
      * main method that creates a new instance of the 'GUI' and makes it visible.
@@ -124,6 +127,7 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent a) {
                 shape = "";
                 OpenFile.image = null;
+                undoShapes.clear();
                 objects.clear();
                 repaint();
             }
@@ -372,6 +376,9 @@ public class GUI extends JFrame {
     private void createToolbar(){
         JPanel toolPanel = new JPanel();
         toolPanel.setLayout(layout);
+        toolPanel.setSize(200,window.getHeight());
+        Dimension max = new Dimension(200, window.getHeight());
+        toolPanel.setMaximumSize(max);
         toolPanel.setBackground(Color.LIGHT_GRAY);
         window.add(toolPanel, BorderLayout.EAST);
 
@@ -388,16 +395,27 @@ public class GUI extends JFrame {
         });
         addToPanel(toolPanel,undo,constraints,0,0,2,1);
 
-        JComboBox undoHistory = new JComboBox();
+        //Creating the undo history combo box
+        undoHistory = new JComboBox();
+        undoHistory.setVisible(true);
         undoHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedUndo = undoHistory.getSelectedIndex();
-                for (int i = undoHistory.getItemCount(); i > selectedUndo; i--){
-                    undoHistory.remove(i);
 
+                undoShapes.clear();
+                for(int i = 0; i < objects.size(); i++){
+                    undoShapes.add(i+1 +" "+ objects.get(i).getName());
                 }
-                objects.subList(selectedUndo, objects.size()).clear();
+                objects.subList(objects.size() - 1 - selectedUndo,  objects.size()).clear();
+                undoShapes.subList(undoShapes.size() - 1 - selectedUndo,  undoShapes.size()).clear();
+                Collections.reverse(undoShapes);
+                DefaultComboBoxModel model = new DefaultComboBoxModel(undoShapes.toArray());
+
+                undoHistory.setModel(model);
+                for (int i = 0; i < objects.size(); i++){
+                    System.out.println(objects.get(i));
+                }
                 canvas.repaint();
             }
         });
@@ -468,8 +486,17 @@ public class GUI extends JFrame {
         jp.add(c, constraints);
     }
 
-//    public static void updateComboBox(){
-//        undoHistory.addItem(shape);
-//            undoHistory.addItem(objects.get(objects.size()-1).getClass().getSimpleName());
-//    }
+    /**
+     * update combo box is called everytime a shape is drawn and it updats the combo box to contain all the shapes that
+     * are present on the canvas
+     */
+    public static void updateComboBox(){
+        undoShapes.clear();
+        for(int i = 0; i < objects.size(); i++){
+            undoShapes.add(i+1 +" "+ objects.get(i).getName());
+        }
+        Collections.reverse(undoShapes);
+        DefaultComboBoxModel model = new DefaultComboBoxModel(undoShapes.toArray());
+        undoHistory.setModel(model);
+    }
 }

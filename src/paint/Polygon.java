@@ -152,7 +152,7 @@ public class Polygon implements ExtendingFill {
             }
             b.write(getClass().getSimpleName() + " ");
 
-            for (int i=0;i < polygon.npoints -1 ; i++){
+            for (int i=0;i < polygon.npoints ; i++){
                 b.write((double)polygon.xpoints[i]/GUI.canvas.getWidth() + " " +
                         (double)polygon.ypoints[i]/GUI.canvas.getHeight() + " ");
             }
@@ -208,5 +208,9 @@ public class Polygon implements ExtendingFill {
      */
     public void setColor(Color color) {
         this.colour = color;
+    }
+
+    public String getName(){
+        return (getClass().getSimpleName());
     }
 }
