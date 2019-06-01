@@ -164,6 +164,8 @@ public class App extends JComponent {
                 polyX.add(i, polyPoint.get(i).x);
                 polyY.add(i, polyPoint.get(i).y);
             }
+            polyX.add(polyPoint.get(0).x);
+            polyY.add(polyPoint.get(0).y);
             polyPoint.clear();
             polyIndex = 0;
             polyPointEnd.clear();

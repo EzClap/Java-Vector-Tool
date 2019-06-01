@@ -33,8 +33,8 @@ public class Polygon implements ConnectorRecEllipsePoly {
     public java.awt.Polygon getPolygon() {
         return polygon;
     }
-    public void setPolygon(java.awt.Polygon elip2d) {
-        this.polygon = elip2d;
+    public void setPolygon(java.awt.Polygon polygon) {
+        this.polygon = polygon;
     }
     public Color getLineColor() {
         return lineColour;
@@ -65,11 +65,11 @@ public class Polygon implements ConnectorRecEllipsePoly {
 
     }
 
-    public void makeObject(ArrayList xpoints, ArrayList ypoints){
+    public void makeObject(ArrayList<Integer> xpoints, ArrayList<Integer> ypoints){
         setLineColor(GUI.colour);
 
         java.awt.Polygon p = new java.awt.Polygon();
-        for (int i = 0; i < xpoints.size()-1; i ++){
+        for (int i = 0; i < xpoints.size(); i ++){
             p.addPoint((int)xpoints.get(i), (int)ypoints.get(i));
         }
         this.setPolygon(p);

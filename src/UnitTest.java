@@ -3,10 +3,11 @@ import paint.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Polygon;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,7 +53,7 @@ class UnitTest {
     @Test
     void testEllipseB02() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertNull(obj.getColor());
@@ -70,7 +71,7 @@ class UnitTest {
     @Test
     void testEllipseB04() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertNull(obj.getColor());
@@ -88,7 +89,7 @@ class UnitTest {
     @Test
     void testEllipseB06() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertNull(obj.getLineColor());
@@ -106,7 +107,7 @@ class UnitTest {
     @Test
     void testEllipseB08() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertNull(obj.getLineColor());
@@ -124,7 +125,7 @@ class UnitTest {
     @Test
     void testEllipseB10() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertEquals(e, obj.getElip2d());
@@ -142,7 +143,7 @@ class UnitTest {
     @Test
     void testEllipseB12() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e);
 
         assertEquals(e, obj.getElip2d());
@@ -170,7 +171,7 @@ class UnitTest {
     @Test
     void testEllipseC03() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK);
 
         assertNull(obj.getColor());
@@ -179,7 +180,7 @@ class UnitTest {
     @Test
     void testEllipseC04() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.ORANGE);
 
         assertNull(obj.getColor());
@@ -206,7 +207,7 @@ class UnitTest {
     @Test
     void testEllipseC07() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK);
 
         assertNull(obj.getColor());
@@ -215,7 +216,7 @@ class UnitTest {
     @Test
     void testEllipseC08() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.ORANGE);
 
         assertNull(obj.getColor());
@@ -242,7 +243,7 @@ class UnitTest {
     @Test
     void testEllipseC11() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -251,7 +252,7 @@ class UnitTest {
     @Test
     void testEllipseC12() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -278,7 +279,7 @@ class UnitTest {
     @Test
     void testEllipseC15() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -287,7 +288,7 @@ class UnitTest {
     @Test
     void testEllipseC16() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -314,7 +315,7 @@ class UnitTest {
     @Test
     void testEllipseC19() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.GREEN);
 
         assertEquals(e, obj.getElip2d());
@@ -323,7 +324,7 @@ class UnitTest {
     @Test
     void testEllipseC20() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.RED);
 
         assertEquals(e, obj.getElip2d());
@@ -350,7 +351,7 @@ class UnitTest {
     @Test
     void testEllipseC23() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.GREEN);
 
         assertEquals(e, obj.getElip2d());
@@ -359,7 +360,7 @@ class UnitTest {
     @Test
     void testEllipseC24() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.RED);
 
         assertEquals(e, obj.getElip2d());
@@ -387,7 +388,7 @@ class UnitTest {
     @Test
     void testEllipseD03() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -396,7 +397,7 @@ class UnitTest {
     @Test
     void testEllipseD04() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.ORANGE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getColor());
@@ -423,7 +424,7 @@ class UnitTest {
     @Test
     void testEllipseD07() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -432,7 +433,7 @@ class UnitTest {
     @Test
     void testEllipseD08() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.ORANGE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getColor());
@@ -459,7 +460,7 @@ class UnitTest {
     @Test
     void testEllipseD11() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.BLUE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -468,7 +469,7 @@ class UnitTest {
     @Test
     void testEllipseD12() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK, Color.YELLOW);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -495,7 +496,7 @@ class UnitTest {
     @Test
     void testEllipseD15() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.BLUE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -504,7 +505,7 @@ class UnitTest {
     @Test
     void testEllipseD16() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.PINK, Color.YELLOW);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -531,7 +532,7 @@ class UnitTest {
     @Test
     void testEllipseD19() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.GREEN, Color.GREEN);
 
         assertEquals(e, obj.getElip2d());
@@ -540,7 +541,7 @@ class UnitTest {
     @Test
     void testEllipseD20() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.RED, Color.MAGENTA);
 
         assertEquals(e, obj.getElip2d());
@@ -567,7 +568,7 @@ class UnitTest {
     @Test
     void testEllipseD23() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.GREEN, Color.GREEN);
 
         assertEquals(e, obj.getElip2d());
@@ -576,7 +577,7 @@ class UnitTest {
     @Test
     void testEllipseD24() {
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Ellipse obj = new Ellipse(e, Color.RED, Color.MAGENTA);
 
         assertEquals(e, obj.getElip2d());
@@ -723,7 +724,7 @@ class UnitTest {
     void testEllipseElip2d2() {
         Ellipse obj = new Ellipse();
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj.setElip2d(e);
 
         assertEquals(e, obj.getElip2d());
@@ -743,7 +744,7 @@ class UnitTest {
     void testEllipseElip2d4() {
         Ellipse obj = new Ellipse();
         Random r = new Random();
-        Ellipse2D e = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj.setElip2d(e);
 
         assertEquals(e, obj.getElip2d());
@@ -756,7 +757,7 @@ class UnitTest {
         Random r = new Random();
         Ellipse2D e1 = new Ellipse2D.Float(r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat());
         obj1.setElip2d(e1);
-        Ellipse2D e2 = new Ellipse2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Ellipse2D e2 = new Ellipse2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj2.setElip2d(e2);
 
         assertEquals(e1, obj1.getElip2d());
@@ -769,7 +770,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -781,7 +782,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -793,7 +794,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -805,7 +806,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -817,7 +818,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -829,7 +830,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -840,7 +841,7 @@ class UnitTest {
         Ellipse obj = new Ellipse();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -883,8 +884,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -930,7 +931,7 @@ class UnitTest {
         Ellipse obj = new Ellipse();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -973,8 +974,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -1020,7 +1021,7 @@ class UnitTest {
         Ellipse obj = new Ellipse();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -1063,8 +1064,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Ellipse2D e = new Ellipse2D.Float(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -1519,7 +1520,7 @@ class UnitTest {
     @Test
     void testRectangleB1() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e);
 
         assertNull(obj.getColor());
@@ -1528,7 +1529,7 @@ class UnitTest {
     @Test
     void testRectangleB2() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e);
 
         assertNull(obj.getLineColor());
@@ -1537,7 +1538,7 @@ class UnitTest {
     @Test
     void testRectangleB3() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e);
 
         assertEquals(e, obj.getRect());
@@ -1547,7 +1548,7 @@ class UnitTest {
     @Test
     void testRectangleC1() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.PINK);
 
         assertNull(obj.getColor());
@@ -1556,7 +1557,7 @@ class UnitTest {
     @Test
     void testRectangleC2() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.ORANGE);
 
         assertNull(obj.getColor());
@@ -1565,7 +1566,7 @@ class UnitTest {
     @Test
     void testRectangleC3() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -1574,7 +1575,7 @@ class UnitTest {
     @Test
     void testRectangleC4() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.PINK);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -1583,7 +1584,7 @@ class UnitTest {
     @Test
     void testRectangleC5() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.GREEN);
 
         assertEquals(e, obj.getRect());
@@ -1592,7 +1593,7 @@ class UnitTest {
     @Test
     void testRectangleC6() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.RED);
 
         assertEquals(e, obj.getRect());
@@ -1602,7 +1603,7 @@ class UnitTest {
     @Test
     void testRectangleD1() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.PINK, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -1611,7 +1612,7 @@ class UnitTest {
     @Test
     void testRectangleD2() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.ORANGE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getColor());
@@ -1620,7 +1621,7 @@ class UnitTest {
     @Test
     void testRectangleD3() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.BLUE, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getLineColor());
@@ -1629,7 +1630,7 @@ class UnitTest {
     @Test
     void testRectangleD4() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.PINK, Color.YELLOW);
 
         assertEquals(Color.PINK, obj.getLineColor());
@@ -1638,7 +1639,7 @@ class UnitTest {
     @Test
     void testRectangleD5() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.GREEN, Color.GREEN);
 
         assertEquals(e, obj.getRect());
@@ -1647,7 +1648,7 @@ class UnitTest {
     @Test
     void testRectangleD6() {
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         paint.Rectangle obj = new paint.Rectangle(e, Color.RED, Color.MAGENTA);
 
         assertEquals(e, obj.getRect());
@@ -1784,7 +1785,7 @@ class UnitTest {
     void testRectangleRect1() {
         paint.Rectangle obj = new paint.Rectangle();
         Random r = new Random();
-        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj.setRect(e);
 
         assertEquals(e, obj.getRect());
@@ -1795,9 +1796,9 @@ class UnitTest {
         paint.Rectangle obj1 = new paint.Rectangle();
         paint.Rectangle obj2 = new paint.Rectangle();
         Random r = new Random();
-        java.awt.Rectangle e1 = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e1 = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj1.setRect(e1);
-        java.awt.Rectangle e2 = new java.awt.Rectangle(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        java.awt.Rectangle e2 = new java.awt.Rectangle(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj2.setRect(e2);
 
         assertEquals(e1, obj1.getRect());
@@ -1810,7 +1811,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -1822,7 +1823,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -1834,7 +1835,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getLineColor());
@@ -1846,7 +1847,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -1858,7 +1859,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -1870,7 +1871,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertNull(obj.getColor());
@@ -1881,7 +1882,7 @@ class UnitTest {
         paint.Rectangle obj = new paint.Rectangle();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -1924,8 +1925,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -1971,7 +1972,7 @@ class UnitTest {
         paint.Rectangle obj = new paint.Rectangle();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -2014,8 +2015,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -2061,7 +2062,7 @@ class UnitTest {
         paint.Rectangle obj = new paint.Rectangle();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(point.x, point.x),
                 Math.min(point.y, point.y), Math.abs(point.x - point.x), Math.abs(point.y - point.y));
 
@@ -2104,8 +2105,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         java.awt.Rectangle e = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x),
                 Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
 
@@ -2541,7 +2542,7 @@ class UnitTest {
     @Test
     void testPlotB1() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e);
 
         assertEquals(Color.BLACK, obj.getColor());
@@ -2550,7 +2551,7 @@ class UnitTest {
     @Test
     void testPlotB2() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e);
 
         assertEquals(e, obj.getPoint());
@@ -2559,7 +2560,7 @@ class UnitTest {
     @Test
     void testPlotC1() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -2568,7 +2569,7 @@ class UnitTest {
     @Test
     void testPlotC2() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e, Color.ORANGE);
 
         assertEquals(Color.ORANGE, obj.getColor());
@@ -2577,7 +2578,7 @@ class UnitTest {
     @Test
     void testPlotC3() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e, Color.GREEN);
 
         assertEquals(e, obj.getPoint());
@@ -2586,7 +2587,7 @@ class UnitTest {
     @Test
     void testPlotC4() {
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         Plot obj = new Plot(e, Color.RED);
 
         assertEquals(e, obj.getPoint());
@@ -2643,7 +2644,7 @@ class UnitTest {
     void testPlotPoint1() {
         Plot obj = new Plot();
         Random r = new Random();
-        Point e = new Point(r.nextInt(), r.nextInt());
+        Point e = new Point(r.nextInt(500), r.nextInt(500));
         obj.setPoint(e);
 
         assertEquals(e, obj.getPoint());
@@ -2654,9 +2655,9 @@ class UnitTest {
         Plot obj1 = new Plot();
         Plot obj2 = new Plot();
         Random r = new Random();
-        Point e1 = new Point(r.nextInt(), r.nextInt());
+        Point e1 = new Point(r.nextInt(500), r.nextInt(500));
         obj1.setPoint(e1);
-        Point e2 = new Point(r.nextInt(), r.nextInt());
+        Point e2 = new Point(r.nextInt(500), r.nextInt(500));
         obj2.setPoint(e2);
 
         assertEquals(e1, obj1.getPoint());
@@ -2669,7 +2670,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -2681,7 +2682,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -2693,7 +2694,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -2704,7 +2705,7 @@ class UnitTest {
         Plot obj = new Plot();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Point e = new Point(point.x, point.y);
 
         obj.makeObject(point, point);
@@ -2744,8 +2745,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Point e = new Point(spoint.x, spoint.y);
 
         obj.makeObject(spoint, fpoint);
@@ -2788,7 +2789,7 @@ class UnitTest {
         Plot obj = new Plot();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Point e = new Point(point.x, point.y);
 
         obj.makeObject(point, point);
@@ -2828,8 +2829,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Point e = new Point(spoint.x, spoint.y);
 
         obj.makeObject(spoint, fpoint);
@@ -3092,7 +3093,7 @@ class UnitTest {
     @Test
     void testLineB02() {
         Random r = new Random();
-        Line2D e = new Line2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Line obj = new Line(e);
 
         assertNull(obj.getColor());
@@ -3110,7 +3111,7 @@ class UnitTest {
     @Test
     void testLineB04() {
         Random r = new Random();
-        Line2D e = new Line2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Line obj = new Line(e);
 
         assertNull(obj.getColor());
@@ -3128,7 +3129,7 @@ class UnitTest {
     @Test
     void testLineB10() {
         Random r = new Random();
-        Line2D e = new Line2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Line obj = new Line(e);
 
         assertEquals(e.getBounds(), obj.getLine().getBounds());
@@ -3146,7 +3147,7 @@ class UnitTest {
     @Test
     void testLineB12() {
         Random r = new Random();
-        Line2D e = new Line2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         Line obj = new Line(e);
 
         assertEquals(e.getBounds(), obj.getLine().getBounds());
@@ -3156,7 +3157,7 @@ class UnitTest {
     @Test
     void testLineC01() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, spoint);
 
         assertNull(obj.getColor());
@@ -3185,8 +3186,8 @@ class UnitTest {
     @Test
     void testLineC04() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, fpoint);
 
         assertNull(obj.getColor());
@@ -3219,7 +3220,7 @@ class UnitTest {
     @Test
     void testLineC07() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, spoint.x, spoint.y);
         Line obj = new Line(spoint, spoint);
 
@@ -3251,8 +3252,8 @@ class UnitTest {
     @Test
     void testLineC10() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, fpoint.x, fpoint.y);
         Line obj = new Line(spoint, fpoint);
 
@@ -3289,7 +3290,7 @@ class UnitTest {
     @Test
     void testLineD01() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, spoint, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -3298,7 +3299,7 @@ class UnitTest {
     @Test
     void testLineD02() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, spoint, Color.BLUE);
 
         assertEquals(Color.BLUE, obj.getColor());
@@ -3347,8 +3348,8 @@ class UnitTest {
     @Test
     void testLineD07() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, fpoint, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -3357,8 +3358,8 @@ class UnitTest {
     @Test
     void testLineD08() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line obj = new Line(spoint, fpoint, Color.PINK);
 
         assertEquals(Color.PINK, obj.getColor());
@@ -3415,7 +3416,7 @@ class UnitTest {
     @Test
     void testLineD13() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, spoint.x, spoint.y);
         Line obj = new Line(spoint, spoint, Color.CYAN);
 
@@ -3425,7 +3426,7 @@ class UnitTest {
     @Test
     void testLineD14() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, spoint.x, spoint.y);
         Line obj = new Line(spoint, spoint, Color.YELLOW);
 
@@ -3479,8 +3480,8 @@ class UnitTest {
     @Test
     void testLineD19() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, fpoint.x, fpoint.y);
         Line obj = new Line(spoint, fpoint, Color.CYAN);
 
@@ -3490,8 +3491,8 @@ class UnitTest {
     @Test
     void testLineD20() {
         Random r = new Random();
-        Point spoint = new Point(r.nextInt(), r.nextInt());
-        Point fpoint = new Point(r.nextInt(), r.nextInt());
+        Point spoint = new Point(r.nextInt(500), r.nextInt(500));
+        Point fpoint = new Point(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, fpoint.x, fpoint.y);
         Line obj = new Line(spoint, fpoint, Color.YELLOW);
 
@@ -3611,7 +3612,7 @@ class UnitTest {
     void testLineLine2d2() {
         Line obj = new Line();
         Random r = new Random();
-        Line2D e = new Line2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj.setLine(e);
 
         assertEquals(e.getBounds(), obj.getLine().getBounds());
@@ -3631,7 +3632,7 @@ class UnitTest {
     void testLineLine2d4() {
         Line obj = new Line();
         Random r = new Random();
-        Line2D e = new Line2D.Float(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e = new Line2D.Float(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj.setLine(e);
 
         assertEquals(e.getBounds(), obj.getLine().getBounds());
@@ -3644,7 +3645,7 @@ class UnitTest {
         Random r = new Random();
         Line2D e1 = new Line2D.Double(r.nextFloat(), r.nextFloat(), r.nextFloat(), r.nextFloat());
         obj1.setLine(e1);
-        Line2D e2 = new Line2D.Double(r.nextInt(), r.nextInt(), r.nextInt(), r.nextInt());
+        Line2D e2 = new Line2D.Double(r.nextInt(500), r.nextInt(500), r.nextInt(500), r.nextInt(500));
         obj2.setLine(e2);
 
         assertEquals(e1.getBounds(), obj1.getLine().getBounds());
@@ -3657,7 +3658,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.YELLOW;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -3669,7 +3670,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.DARK_GRAY;
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -3681,7 +3682,7 @@ class UnitTest {
         Random r = new Random();
         GUI.colour = Color.decode("#12FF33");
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         obj.makeObject(point, point);
 
         assertEquals(GUI.colour, obj.getColor());
@@ -3692,7 +3693,7 @@ class UnitTest {
         Line obj = new Line();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(point.x, point.y, point.x,  point.y);
 
         obj.makeObject(point, point);
@@ -3732,8 +3733,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, fpoint.x,  fpoint.y);
 
         obj.makeObject(spoint, fpoint);
@@ -3776,7 +3777,7 @@ class UnitTest {
         Line obj = new Line();
         Random r = new Random();
         Point point = new Point();
-        point.setLocation(r.nextInt(), r.nextInt());
+        point.setLocation(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(point.x, point.y, point.x,  point.y);
 
         obj.makeObject(point, point);
@@ -3816,8 +3817,8 @@ class UnitTest {
         Random r = new Random();
         Point spoint = new Point();
         Point fpoint = new Point();
-        spoint.setLocation(r.nextInt(), r.nextInt());
-        fpoint.setLocation(r.nextInt(), r.nextInt());
+        spoint.setLocation(r.nextInt(500), r.nextInt(500));
+        fpoint.setLocation(r.nextInt(500), r.nextInt(500));
         Line2D e = new Line2D.Double(spoint.x, spoint.y, fpoint.x,  fpoint.y);
 
         obj.makeObject(spoint, fpoint);
@@ -4095,6 +4096,1122 @@ class UnitTest {
 
 
 
+    @Test
+    void testPolygonA1() {
+        paint.Polygon obj = new paint.Polygon();
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonA2() {
+        paint.Polygon obj = new paint.Polygon();
+
+        assertNull(obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonA3() {
+        paint.Polygon obj = new paint.Polygon();
+
+        assertNull(obj.getPolygon());
+    }
+
+
+    @Test
+    void testPolygonB1() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonB2() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e);
+
+        assertNull(obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonB3() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+
+    @Test
+    void testPolygonC1() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.PINK);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonC2() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.ORANGE);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonC3() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.BLUE);
+
+        assertEquals(Color.BLUE, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonC4() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.PINK);
+
+        assertEquals(Color.PINK, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonC5() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.GREEN);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+    @Test
+    void testPolygonC6() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.RED);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+
+    @Test
+    void testPolygonD1() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.PINK, Color.PINK);
+
+        assertEquals(Color.PINK, obj.getColor());
+    }
+
+    @Test
+    void testPolygonD2() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.ORANGE, Color.BLUE);
+
+        assertEquals(Color.BLUE, obj.getColor());
+    }
+
+    @Test
+    void testPolygonD3() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.BLUE, Color.BLUE);
+
+        assertEquals(Color.BLUE, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonD4() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.PINK, Color.YELLOW);
+
+        assertEquals(Color.PINK, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonD5() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.GREEN, Color.GREEN);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+    @Test
+    void testPolygonD6() {
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        paint.Polygon obj = new paint.Polygon(e, Color.RED, Color.MAGENTA);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+
+    @Test
+    void testPolygonColor1() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setColor(Color.BLUE);
+
+        assertEquals(Color.BLUE, obj.getColor());
+    }
+
+    @Test
+    void testPolygonColor2() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setColor(Color.MAGENTA);
+
+        assertEquals(Color.MAGENTA, obj.getColor());
+    }
+
+    @Test
+    void testPolygonColor3() {
+        paint.Polygon obj = new paint.Polygon();
+        Color color = Color.decode("#a0a0a0");
+        obj.setColor(color);
+
+        assertEquals(color, obj.getColor());
+    }
+
+    @Test
+    void testPolygonColor4() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setColor(Color.MAGENTA);
+
+        assertNull(obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonColor5() {
+        paint.Polygon obj = new paint.Polygon();
+        Color color = Color.decode("#a0a0a0");
+        obj.setColor(color);
+
+        assertNull(obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonColor6() {
+        paint.Polygon obj1 = new paint.Polygon();
+        paint.Polygon obj2 = new paint.Polygon();
+        obj1.setColor(Color.PINK);
+        obj2.setColor(Color.BLUE);
+
+        assertEquals(Color.PINK, obj1.getColor());
+    }
+
+    @Test
+    void testPolygonColor7() {
+        paint.Polygon obj1 = new paint.Polygon();
+        paint.Polygon obj2 = new paint.Polygon();
+        obj1.setColor(Color.MAGENTA);
+        obj2.setColor(Color.GREEN);
+
+        assertEquals(Color.MAGENTA, obj1.getColor());
+    }
+
+
+    @Test
+    void testPolygonLineColor1() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setLineColor(Color.RED);
+
+        assertEquals(Color.RED, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonLineColor2() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setLineColor(Color.PINK);
+
+        assertEquals(Color.PINK, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonLineColor3() {
+        paint.Polygon obj = new paint.Polygon();
+        Color color = Color.decode("#B2FF66");
+        obj.setLineColor(color);
+
+        assertEquals(color, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonLineColor4() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.setLineColor(Color.PINK);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonLineColor5() {
+        paint.Polygon obj = new paint.Polygon();
+        Color color = Color.decode("#B2FF66");
+        obj.setLineColor(color);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonLineColor6() {
+        paint.Polygon obj1 = new paint.Polygon();
+        paint.Polygon obj2 = new paint.Polygon();
+        obj1.setLineColor(Color.ORANGE);
+        obj2.setLineColor(Color.DARK_GRAY);
+
+        assertEquals(Color.ORANGE, obj1.getLineColor());
+    }
+
+    @Test
+    void testPolygonLineColor7() {
+        paint.Polygon obj1 = new paint.Polygon();
+        paint.Polygon obj2 = new paint.Polygon();
+        obj1.setLineColor(Color.MAGENTA);
+        obj2.setLineColor(Color.GREEN);
+
+        assertEquals(Color.MAGENTA, obj1.getLineColor());
+    }
+
+
+    @Test
+    void testPolygonPoly1() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = r.nextInt(500);
+            y[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        obj.setPolygon(e);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+    @Test
+    void testPolygonPoly2() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        int[] x = new int[size];
+        int[] y = new int[size];
+        for (int i = 0; i < size; i++) {
+            x[i] = 0;
+            y[i] = 0;
+        }
+        java.awt.Polygon e = new java.awt.Polygon(x, y, size);
+        obj.setPolygon(e);
+
+        assertEquals(e, obj.getPolygon());
+    }
+
+    @Test
+    void testPolygonPoly5() {
+        paint.Polygon obj1 = new paint.Polygon();
+        paint.Polygon obj2 = new paint.Polygon();
+        Random r = new Random();
+        int size1 = r.nextInt(12) + 3;
+        int[] x1 = new int[size1];
+        int[] y1 = new int[size1];
+        for (int i = 0; i < size1; i++) {
+            x1[i] = r.nextInt(500);
+            y1[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e1 = new java.awt.Polygon(x1, y1, size1);
+        obj1.setPolygon(e1);
+
+        int size2 = r.nextInt(12) + 3;
+        int[] x2 = new int[size2];
+        int[] y2 = new int[size2];
+        for (int i = 0; i < size2; i++) {
+            x2[i] = r.nextInt(500);
+            y2[i] = r.nextInt(500);
+        }
+        java.awt.Polygon e2 = new java.awt.Polygon(x2, y2, size2);
+        obj2.setPolygon(e2);
+
+        assertEquals(e1, obj1.getPolygon());
+    }
+
+
+    @Test
+    void testPolygonMakeObject01() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.YELLOW;
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertEquals(GUI.colour, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonMakeObject02() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.DARK_GRAY;
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertEquals(GUI.colour, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonMakeObject03() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.decode("#12FF33");
+        int size = r.nextInt(12);
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertEquals(GUI.colour, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonMakeObject04() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.YELLOW;
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonMakeObject05() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.DARK_GRAY;
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonMakeObject06() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        GUI.colour = Color.decode("#12FF33");
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+        obj.makeObject(x, y);
+
+        assertNull(obj.getColor());
+    }
+
+    @Test
+    void testPolygonMakeObject07() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint((int)x.get(i), (int)y.get(i));
+        }
+        obj.makeObject(x, y);
+
+        boolean equal = true;
+        if (e.xpoints.length == obj.getPolygon().xpoints.length) {
+            for (int i = 0; i < e.xpoints.length; i++) {
+                if (e.xpoints[i] != obj.getPolygon().xpoints[i]) {
+                    equal = false;
+                }
+                if (e.ypoints[i] != obj.getPolygon().ypoints[i]) {
+                    equal = false;
+                }
+            }
+        } else {
+            equal = false;
+        }
+
+        assertTrue(equal);
+    }
+
+    @Test
+    void testPolygonMakeObject08() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        x.add(3); y.add(1);
+        x.add(5); y.add(2);
+        x.add(4); y.add(3);
+        x.add(2); y.add(3);
+        x.add(1); y.add(2);
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint(x.get(i), y.get(i));
+        }
+        e.addPoint(3,2);
+        obj.makeObject(x, y);
+
+        boolean equal = true;
+        if (e.xpoints.length == obj.getPolygon().xpoints.length) {
+            for (int i = 0; i < e.xpoints.length; i++) {
+                if (e.xpoints[i] != obj.getPolygon().xpoints[i]) {
+                    equal = false;
+                }
+                if (e.ypoints[i] != obj.getPolygon().ypoints[i]) {
+                    equal = false;
+                }
+            }
+        } else {
+            equal = false;
+        }
+
+        assertFalse(equal);
+    }
+
+    @Test
+    void testPolygonMakeObject09() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3 + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint((int)x.get(i), (int)y.get(i));
+        }
+        obj.makeObject(x, y);
+
+        assertEquals(Color.BLACK, obj.getLineColor());
+    }
+
+    @Test
+    void testPolygonMakeObject10() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint((int)x.get(i), (int)y.get(i));
+        }
+        obj.makeObject(x, y);
+
+        assertNull(obj.getColor());
+    }
+
+
+    @Test
+    void testPolygonFill1() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.fill(Color.MAGENTA);
+
+        assertEquals(Color.MAGENTA, obj.getColor());
+    }
+
+    @Test
+    void testPolygonFill2() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.fill(Color.BLUE);
+
+        assertEquals(Color.BLUE, obj.getColor());
+    }
+
+    @Test
+    void testPolygonFill3() {
+        paint.Polygon obj = new paint.Polygon();
+        obj.fill(Color.decode("#123456"));
+
+        assertEquals(Color.decode("#123456"), obj.getColor());
+    }
+
+
+    @Test
+    void testPolygonContains1() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+//        x.add(3); y.add(1);
+//        x.add(5); y.add(2);
+//        x.add(4); y.add(3);
+//        x.add(2); y.add(3);
+//        x.add(1); y.add(2);
+
+        int nx = 0;
+        int ny = 0;
+
+        for (int i = 0; i < x.size(); i++) {
+            nx += x.get(i);
+            ny += y.get(i);
+        }
+        obj.makeObject(x, y);
+
+        Point npoint = new Point();
+        npoint.setLocation(nx/size, ny/size);
+
+        assertTrue(obj.contains(npoint));
+    }
+
+    @Test
+    void testPolygonContains2() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        int nx = 0;
+        int ny = 0;
+
+        for (int i = 0; i < x.size(); i++) {
+            nx += x.get(i);
+            ny += y.get(i);
+        }
+        obj.makeObject(x, y);
+
+        Point npoint = new Point();
+        npoint.setLocation(nx, ny);
+
+        assertFalse(obj.contains(npoint));
+    }
+
+    @Test
+    void testPolygonContains3() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        int nx = 0;
+        int ny = 0;
+
+        for (int i = 0; i < x.size(); i++) {
+            nx -= x.get(i);
+            ny -= y.get(i);
+        }
+        obj.makeObject(x, y);
+
+        Point npoint = new Point();
+        npoint.setLocation(nx/x.size(), ny/y.size());
+
+        assertFalse(obj.contains(npoint));
+    }
+
+
+    @Test
+    void testPolygonMove1() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint((int)x.get(i), (int)y.get(i));
+        }
+        obj.makeObject(x, y);
+
+        Point startDrag = new Point(x.get(0), y.get(0));
+        Point endDrag = new Point();
+        endDrag.setLocation(startDrag.x + r.nextInt(500), startDrag.y + r.nextInt(500));
+
+        obj.move(startDrag, endDrag);
+
+        e.translate(endDrag.x - startDrag.x, endDrag.y - startDrag.y);
+
+        boolean equal = true;
+        if (e.xpoints.length == obj.getPolygon().xpoints.length) {
+            for (int i = 0; i < e.xpoints.length; i++) {
+                if (e.xpoints[i] != obj.getPolygon().xpoints[i]) {
+                    equal = false;
+                }
+                if (e.ypoints[i] != obj.getPolygon().ypoints[i]) {
+                    equal = false;
+                }
+            }
+        } else {
+            equal = false;
+        }
+
+        assertTrue(equal);
+    }
+
+    @Test
+    void testPolygonMove2() {
+        paint.Polygon obj = new paint.Polygon();
+        Random r = new Random();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        java.awt.Polygon e = new java.awt.Polygon();
+        for (int i = 0; i < x.size(); i++) {
+            e.addPoint((int)x.get(i), (int)y.get(i));
+        }
+        obj.makeObject(x, y);
+
+        Point startDrag = new Point(x.get(r.nextInt(size)), y.get(r.nextInt(size)));
+        Point endDrag = new Point();
+        endDrag.setLocation(startDrag.x + r.nextInt(500), startDrag.y + r.nextInt(500));
+
+        obj.move(startDrag, endDrag);
+
+        e.translate(endDrag.x - startDrag.x, endDrag.y - startDrag.y);
+
+        boolean equal = true;
+        if (e.xpoints.length == obj.getPolygon().xpoints.length) {
+            for (int i = 0; i < e.xpoints.length; i++) {
+                if (e.xpoints[i] != obj.getPolygon().xpoints[i]) {
+                    equal = false;
+                }
+                if (e.ypoints[i] != obj.getPolygon().ypoints[i]) {
+                    equal = false;
+                }
+            }
+        } else {
+            equal = false;
+        }
+
+        assertTrue(equal);
+    }
+
+
+    @Test
+    void testPolygonWritetoFile1() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #000000\nFILL OFF\nPolygon ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
+                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while(tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWritetoFile2() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+        obj.setColor(Color.decode("#1258a4"));
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #000000\nFILL #1258a4\nPolygon ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
+                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWritetoFile3() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+        obj.setLineColor(Color.decode("#56df75"));
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #56df75\nFILL OFF\nPolygon ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
+                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void testPolygonWritetoFile4() {
+        Random r = new Random();
+        paint.Polygon obj = new paint.Polygon();
+        int size = r.nextInt(12) + 3;
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            x.add(r.nextInt(500));
+            y.add(r.nextInt(500));
+        }
+
+        obj.makeObject(x, y);
+        obj.setLineColor(Color.decode("#aedd88"));
+        obj.setColor(Color.PINK);
+
+        String sExpect = "";
+        String sActual = "";
+
+        try {
+            File fileActual = new File("file1.txt");
+            FileWriter fwActual = new FileWriter(fileActual);
+
+            BufferedWriter actual = new BufferedWriter(fwActual);
+            obj.writetoFile(actual);
+            actual.close();
+
+            File fileExpect = new File("file2.txt");
+            FileWriter fwExpect = new FileWriter(fileExpect);
+
+            BufferedWriter expect = new BufferedWriter(fwExpect);
+            expect.write("PEN #aedd88\nFILL #ffafaf\nPolygon ");
+            for (int i=0;i < obj.getPolygon().npoints -1 ; i++){
+                expect.write((double)obj.getPolygon().xpoints[i]/GUI.canvas.getWidth() + " " +
+                        (double)obj.getPolygon().ypoints[i]/GUI.canvas.getHeight() + " ");
+            }
+            expect.close();
+
+
+            FileReader frActual = new FileReader(fileActual);
+            BufferedReader brActual = new BufferedReader(frActual);
+
+            String tActual = brActual.readLine();
+            while (tActual != null) {
+                sActual += tActual + "\n";
+                tActual = brActual.readLine();
+            }
+
+            FileReader frExpect = new FileReader(fileExpect);
+            BufferedReader brExpect = new BufferedReader(frExpect);
+
+            String tExpect = brExpect.readLine();
+            while (tExpect != null) {
+                sExpect += tExpect + "\n";
+                tExpect = brExpect.readLine();
+            }
+
+            assertEquals(sExpect, sActual);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }
