@@ -402,7 +402,6 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedUndo = undoHistory.getSelectedIndex();
-
                 undoShapes.clear();
                 for(int i = 0; i < objects.size(); i++){
                     undoShapes.add(i+1 +" "+ objects.get(i).getName());
@@ -411,11 +410,7 @@ public class GUI extends JFrame {
                 undoShapes.subList(undoShapes.size() - 1 - selectedUndo,  undoShapes.size()).clear();
                 Collections.reverse(undoShapes);
                 DefaultComboBoxModel model = new DefaultComboBoxModel(undoShapes.toArray());
-
                 undoHistory.setModel(model);
-                for (int i = 0; i < objects.size(); i++){
-                    System.out.println(objects.get(i));
-                }
                 canvas.repaint();
             }
         });
