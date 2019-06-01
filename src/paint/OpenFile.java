@@ -78,10 +78,10 @@ public class OpenFile extends JFrame {
                                 Polygon r = new Polygon();
                                 ArrayList <Integer> xpoints= new ArrayList<>();
                                 ArrayList <Integer> ypoints = new ArrayList<>();
-                                System.out.println(a.length);
+
 
                                 for (int i = 1; i < a.length ; i=i+2){
-                                    System.out.println(a.length);
+
                                     xpoints.add( (int)((Double.parseDouble(a[i]))*GUI.canvas.getWidth()));
                                 }
 

@@ -66,8 +66,8 @@ public class GUI extends JFrame {
         //Setting up the display window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Vector Graphic Designer");
-        setSize(900, 600);
-        Dimension minSize = new Dimension(600,400);
+        setSize(1100, 750);
+        Dimension minSize = new Dimension(800,550);
         setMinimumSize(minSize);
 
         //Creates and sets up the 'window' this is set to the content pane, which will hold everything that is displayed
@@ -383,6 +383,7 @@ public class GUI extends JFrame {
         window.add(toolPanel, BorderLayout.EAST);
 
         JButton undo = new JButton("undo");
+
         undo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent a) {

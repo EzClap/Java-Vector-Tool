@@ -11,7 +11,9 @@ public interface Paint {
     void draw( GraphicsAdapter g);
     boolean contains(Point p);
     void move(Point startDrag, Point endDrag);
-    void writetoFile(BufferedWriter b);
+    void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor);
     void makeObject(Point startDrag, Point endDrag);
+    Color getLineColor();
+    Color getColor();
     String getName();
 }

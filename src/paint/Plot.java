@@ -78,29 +78,41 @@ public class Plot implements Paint {
      * to load again, as per the assignment specifications
      * @param b bufferedWriter writes to the files
      */
-    public void writetoFile(BufferedWriter b){
+    public void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor){
         try {
-            if (getColor().getRed()<17 ){
-                b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
-            }else{
-                b.write("PEN #" + Integer.toHexString(getColor().getRed()));
+            if (prevLColor != getLineColor()) {
+                if (getColor().getRed() < 17) {
+                    b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
+                } else {
+                    b.write("PEN #" + Integer.toHexString(getColor().getRed()));
+                }
+                if (getColor().getGreen() < 17) {
+                    b.write("0" + Integer.toHexString(getColor().getGreen()));
+                } else {
+                    b.write(Integer.toHexString(getColor().getGreen()));
+                }
+                if (getColor().getBlue() < 17) {
+                    b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                } else {
+                    b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                }
             }
-            if (getColor().getGreen() <17){
-                b.write("0" + Integer.toHexString(getColor().getGreen()));
-            }else{
-                b.write(Integer.toHexString(getColor().getGreen()));
-            }
-            if (getColor().getBlue()<17){
-                b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
-            }else{
-                b.write(Integer.toHexString(getColor().getBlue())+"\n");
-            }
-            b.write(getClass().getSimpleName() + " ");
-            b.write((double)(getPoint().x)/GUI.canvas.getWidth() + " " +
-                    (double)(getPoint().y)/GUI.canvas.getHeight());
+
+            b.write(getClass().getSimpleName().toUpperCase() + " ");
+            b.write(String.format("%.8f",(double)(getPoint().x)/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(getPoint().y)/GUI.canvas.getHeight()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * gets the line colour of the rectangle
+     * @return lineColor the Color
+     */
+    @Override
+    public Color getLineColor() {
+        return color;
     }
 
     /**
