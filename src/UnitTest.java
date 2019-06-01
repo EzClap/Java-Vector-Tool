@@ -4794,24 +4794,20 @@ class UnitTest {
     @Test
     void testPolygonContains1() {
         paint.Polygon obj = new paint.Polygon();
-        Random r = new Random();
-        int size = r.nextInt(12) + 3;
         ArrayList<Integer> x = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            x.add(r.nextInt(500));
-            y.add(r.nextInt(500));
-        }
-//        x.add(3); y.add(1);
-//        x.add(5); y.add(2);
-//        x.add(4); y.add(3);
-//        x.add(2); y.add(3);
-//        x.add(1); y.add(2);
+
+        int size = 5;
+        x.add(3); y.add(1);
+        x.add(5); y.add(2);
+        x.add(4); y.add(3);
+        x.add(2); y.add(3);
+        x.add(1); y.add(2);
 
         int nx = 0;
         int ny = 0;
 
-        for (int i = 0; i < x.size(); i++) {
+        for (int i = 0; i < size; i++) {
             nx += x.get(i);
             ny += y.get(i);
         }
@@ -4826,53 +4822,59 @@ class UnitTest {
     @Test
     void testPolygonContains2() {
         paint.Polygon obj = new paint.Polygon();
-        Random r = new Random();
-        int size = r.nextInt(12) + 3;
         ArrayList<Integer> x = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            x.add(r.nextInt(500));
-            y.add(r.nextInt(500));
-        }
 
-        int nx = 0;
-        int ny = 0;
+        int size = 5;
+        x.add(3); y.add(1);
+        x.add(5); y.add(2);
+        x.add(4); y.add(3);
+        x.add(2); y.add(3);
+        x.add(1); y.add(2);
 
-        for (int i = 0; i < x.size(); i++) {
-            nx += x.get(i);
-            ny += y.get(i);
-        }
         obj.makeObject(x, y);
 
         Point npoint = new Point();
-        npoint.setLocation(nx, ny);
+        npoint.setLocation(4, 2);
 
-        assertFalse(obj.contains(npoint));
+        assertTrue(obj.contains(npoint));
     }
 
     @Test
     void testPolygonContains3() {
         paint.Polygon obj = new paint.Polygon();
-        Random r = new Random();
-        int size = r.nextInt(12) + 3;
         ArrayList<Integer> x = new ArrayList<>();
         ArrayList<Integer> y = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            x.add(r.nextInt(500));
-            y.add(r.nextInt(500));
-        }
+        int size = 5;
+        x.add(3); y.add(1);
+        x.add(5); y.add(2);
+        x.add(4); y.add(3);
+        x.add(2); y.add(3);
+        x.add(1); y.add(2);
 
-        int nx = 0;
-        int ny = 0;
-
-        for (int i = 0; i < x.size(); i++) {
-            nx -= x.get(i);
-            ny -= y.get(i);
-        }
         obj.makeObject(x, y);
 
         Point npoint = new Point();
-        npoint.setLocation(nx/x.size(), ny/y.size());
+        npoint.setLocation(1, 1);
+
+        assertFalse(obj.contains(npoint));
+    }
+
+    @Test
+    void testPolygonContains4() {
+        paint.Polygon obj = new paint.Polygon();
+        ArrayList<Integer> x = new ArrayList<>();
+        ArrayList<Integer> y = new ArrayList<>();int size = 5;
+        x.add(3); y.add(1);
+        x.add(5); y.add(2);
+        x.add(4); y.add(3);
+        x.add(2); y.add(3);
+        x.add(1); y.add(2);
+
+        obj.makeObject(x, y);
+
+        Point npoint = new Point();
+        npoint.setLocation(4, 1);
 
         assertFalse(obj.contains(npoint));
     }
