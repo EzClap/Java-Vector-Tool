@@ -33,37 +33,46 @@ public class Line implements ConnectorLinePlot {
 
     @Override
     public boolean contains(Point p) {
-        return this.contains(p);
+        int boxX = p.x - 1;
+        int boxY = p.y - 1;
+        return this.line.intersects(boxX,boxY,2,2);
     }
     @Override
     public void move(Point spoint, Point fpoint){
-        Point startPoint = new Point((int)line.getX1() + (fpoint.x - spoint.x), (int)line.getY1() + (fpoint.y - spoint.y));
-        Point endPoint = new Point((int)line.getX2() + (fpoint.x - spoint.x),(int)line.getY2() + (fpoint.y - spoint.y));
+        Point startPoint = new Point((int)line.getX1() + (fpoint.x - spoint.x),
+                (int)line.getY1() + (fpoint.y - spoint.y));
+        Point endPoint = new Point((int)line.getX2() + (fpoint.x - spoint.x),
+                (int)line.getY2() + (fpoint.y - spoint.y));
         Line2D ln = new Line2D.Double(startPoint.x, startPoint.y, endPoint.x, endPoint.y);
         this.setLine(ln);
     }
 
     @Override
-    public void writetoFile(BufferedWriter b){
+    public void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor){
         try {
-            if (getColor().getRed()<17 ){
-                b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
-            }else{
-                b.write("PEN #" + Integer.toHexString(getColor().getRed()));
-            }
-            if (getColor().getGreen() <17){
-                b.write("0" + Integer.toHexString(getColor().getGreen()));
-            }else{
-                b.write(Integer.toHexString(getColor().getGreen()));
-            }
-            if (getColor().getBlue()<17){
-                b.write("0" + Integer.toHexString(getColor().getBlue())+"\n");
-            }else{
-                b.write(Integer.toHexString(getColor().getBlue())+"\n");
+            if (prevLColor != getLineColor()) {
+                if (getColor().getRed() < 17) {
+                    b.write("PEN #0" + Integer.toHexString(getColor().getRed()));
+                } else {
+                    b.write("PEN #" + Integer.toHexString(getColor().getRed()));
+                }
+                if (getColor().getGreen() < 17) {
+                    b.write("0" + Integer.toHexString(getColor().getGreen()));
+                } else {
+                    b.write(Integer.toHexString(getColor().getGreen()));
+                }
+                if (getColor().getBlue() < 17) {
+                    b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                } else {
+                    b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                }
             }
 
-            b.write(getClass().getSimpleName() + " ");
-            b.write((getLine().getX1())/GUI.canvas.getWidth() + " " + (getLine().getY1())/GUI.canvas.getHeight() + " " + (getLine().getX2())/GUI.canvas.getWidth() + " " + (getLine().getY2())/GUI.canvas.getHeight());
+            b.write(getClass().getSimpleName().toUpperCase() + " ");
+            b.write(String.format("%.8f",(double)(getLine().getX1())/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(getLine().getY1())/GUI.canvas.getHeight()) + " " +
+                    String.format("%.8f",(double)(getLine().getX2())/GUI.canvas.getWidth()) + " " +
+                    String.format("%.8f",(double)(getLine().getY2())/GUI.canvas.getHeight()));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,6 +84,10 @@ public class Line implements ConnectorLinePlot {
         Line2D ln = new Line2D.Double(spoint.x, spoint.y, fpoint.x,  fpoint.y);
         setLine(ln);
         setColor(GUI.colour);
+    }
+
+    public Color getLineColor() {
+        return color;
     }
     public Color getColor() {
         return color;

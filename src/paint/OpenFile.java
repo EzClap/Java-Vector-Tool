@@ -51,7 +51,10 @@ public class OpenFile extends JFrame {
                             }
                             if(a[0].equals("RECTANGLE")||a[0].equals("Rectangle")){
                                 Rectangle r = new Rectangle();
-                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())), new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
+                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()),
+                                        (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())),
+                                        new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()),
+                                                (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
                                 r.setLineColor(lineColour);
                                 r.setColor(fillColour);
                                 GUI.objects.add(r);
@@ -82,18 +85,25 @@ public class OpenFile extends JFrame {
                                 GUI.objects.add(r);
                             } else if(a[0].equals("ELLIPSE")||a[0].equals("Ellipse")){
                                 Ellipse r = new Ellipse();
-                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())), new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
+                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()),
+                                        (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())),
+                                        new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()),
+                                                (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
                                 r.setLineColor(lineColour);
                                 r.setColor(fillColour);
                                 GUI.objects.add(r);
                             } else if(a[0].equals("PLOT")||a[0].equals("Plot")){
                                 Plot r = new Plot();
-                                r.setPoint(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())));
+                                r.setPoint(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()),
+                                        (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())));
                                 r.setColor(lineColour);
                                 GUI.objects.add(r);
                             } else if(a[0].equals("LINE")||a[0].equals("Line")){
                                 Line r = new Line();
-                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())), new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()), (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
+                                r.makeObject(new Point((int)(Double.parseDouble(a[1])*GUI.canvas.getWidth()),
+                                        (int)(Double.parseDouble(a[2])*GUI.canvas.getHeight())),
+                                        new Point((int)(Double.parseDouble(a[3])*GUI.canvas.getWidth()),
+                                                (int)(Double.parseDouble(a[4])*GUI.canvas.getHeight())));
                                 r.setColor(lineColour);
                                 GUI.objects.add(r);
                             }

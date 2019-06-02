@@ -33,7 +33,8 @@ public class Rectangle implements ConnectorRecEllipsePoly {
         x2 = fpoint.x;
         y2 = fpoint.y;
         setLineColor(GUI.colour);
-        java.awt.Rectangle r = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y), Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
+        java.awt.Rectangle r = new java.awt.Rectangle(Math.min(spoint.x, fpoint.x), Math.min(spoint.y, fpoint.y),
+                Math.abs(spoint.x - fpoint.x), Math.abs(spoint.y - fpoint.y));
         this.setRect(r);
     }
 
@@ -41,13 +42,16 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     public void draw(GraphicsAdapter g) {
         if(getColor() == null){
             g.getGraphicAdapter().setColor(this.getLineColor());
-            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
         }
         else{
             g.getGraphicAdapter().setColor(this.getColor());
-            g.getGraphicAdapter().fillRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().fillRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
             g.getGraphicAdapter().setColor(this.getLineColor());
-            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y, this.getRect().width, this.getRect().height);
+            g.getGraphicAdapter().drawRect(this.getRect().x, this.getRect().y,
+                    this.getRect().width, this.getRect().height);
         }
     }
     @Override
@@ -60,48 +64,60 @@ public class Rectangle implements ConnectorRecEllipsePoly {
     }
     @Override
     public void move(Point startDrag, Point endDrag){
-        java.awt.Rectangle r = new java.awt.Rectangle(this.getRect().x + (endDrag.x - startDrag.x),this.getRect().y + (endDrag.y - startDrag.y), this.getRect().width, this.getRect().height);
+        x1 = this.getRect().x + (endDrag.x - startDrag.x);
+        y1 = this.getRect().y + (endDrag.y - startDrag.y);
+        x2 = x1 + this.getRect().getWidth();
+        y2 = y1 + this.getRect().getHeight();
+        java.awt.Rectangle r = new java.awt.Rectangle((int)x1, (int)y1, this.getRect().width, this.getRect().height);
         this.setRect(r);
     }
 
-    public void writetoFile(BufferedWriter b){
+    public void writetoFile(BufferedWriter b, Color prevLColor, Color prevFColor){
         try {
-            if (getLineColor().getRed()<17 ){
-                b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
-            }else{
-                b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
-            }
-            if (getLineColor().getGreen() <17){
-                b.write("0" + Integer.toHexString(getLineColor().getGreen()));
-            }else{
-                b.write(Integer.toHexString(getLineColor().getGreen()));
-            }
-            if (getLineColor().getBlue()<17){
-                b.write("0" + Integer.toHexString(getLineColor().getBlue())+"\n");
-            }else{
-                b.write(Integer.toHexString(getLineColor().getBlue())+"\n");
-            }
-            if(getColor()==null){
-                b.write("FILL OFF\n");
-            } else {
-                if (getColor().getRed() < 17) {
-                    b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+            if (prevLColor != getLineColor()) {
+                if (getLineColor().getRed() < 17) {
+                    b.write("PEN #0" + Integer.toHexString(getLineColor().getRed()));
                 } else {
-                    b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                    b.write("PEN #" + Integer.toHexString(getLineColor().getRed()));
                 }
-                if (getColor().getGreen() < 17) {
-                    b.write("0" + Integer.toHexString(getColor().getGreen()));
+                if (getLineColor().getGreen() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getGreen()));
                 } else {
-                    b.write(Integer.toHexString(getColor().getGreen()));
+                    b.write(Integer.toHexString(getLineColor().getGreen()));
                 }
-                if (getColor().getBlue() < 17) {
-                    b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                if (getLineColor().getBlue() < 17) {
+                    b.write("0" + Integer.toHexString(getLineColor().getBlue()) + "\n");
                 } else {
-                    b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                    b.write(Integer.toHexString(getLineColor().getBlue()) + "\n");
                 }
             }
-            b.write(getClass().getSimpleName() + " ");
-            b.write((double)(x1/GUI.canvas.getWidth()) + " " + (double)(y1/GUI.canvas.getHeight()) + " " + (double)(x2/ GUI.canvas.getWidth()) + " " + (double)(y2/ GUI.canvas.getHeight()) );
+
+            if (prevFColor != getColor()) {
+                if (getColor() == null) {
+                    b.write("FILL OFF\n");
+                } else {
+                    if (getColor().getRed() < 17) {
+                        b.write("FILL #0" + Integer.toHexString(getColor().getRed()));
+                    } else {
+                        b.write("FILL #" + Integer.toHexString(getColor().getRed()));
+                    }
+                    if (getColor().getGreen() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getGreen()));
+                    } else {
+                        b.write(Integer.toHexString(getColor().getGreen()));
+                    }
+                    if (getColor().getBlue() < 17) {
+                        b.write("0" + Integer.toHexString(getColor().getBlue()) + "\n");
+                    } else {
+                        b.write(Integer.toHexString(getColor().getBlue()) + "\n");
+                    }
+                }
+            }
+            b.write(getClass().getSimpleName().toUpperCase() + " ");
+            b.write(String.format("%.8f",(double)(x1/GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y1/GUI.canvas.getHeight())) + " " +
+                    String.format("%.8f",(double)(x2/ GUI.canvas.getWidth())) + " " +
+                    String.format("%.8f",(double)(y2/ GUI.canvas.getHeight())));
         } catch (IOException e) {
             e.printStackTrace();
         }

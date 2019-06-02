@@ -51,7 +51,8 @@ public class GUI extends JFrame {
      *
      * The window and canvas JPanel are created here, the window is assigned as the
      * content pane which hold everything that is visible, and the canvas panel will be
-     * the panel that is drawn on, the app constructor is called on it to allow it to be drawn on and contain the Action listeners.
+     * the panel that is drawn on, the app constructor is called on it to allow it to be
+     * drawn on and contain the Action listeners.
      *
      * The constraints variable is initiated here which brings consistency visually for all the buttons
      *
@@ -66,7 +67,8 @@ public class GUI extends JFrame {
         Dimension minSize = new Dimension(600,400);
         setMinimumSize(minSize);
 
-        //Creates and sets up the 'window' this is set to the content pane, which will hold everything that is displayed.
+        //Creates and sets up the 'window' this is set to the content pane, which will hold
+        // everything that is displayed.
         window = new JPanel();
         window.setSize(450,450);
         window.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -82,7 +84,8 @@ public class GUI extends JFrame {
         canvas.setBackground(Color.white);
         window.add(canvas, BorderLayout.CENTER);
 
-        //setting up constraints variable which will be used to create each button and make them look the same, for visual consistency.
+        //setting up constraints variable which will be used to create each button and make
+        // them look the same, for visual consistency.
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.WEST;
         constraints.weightx = 100;
@@ -212,7 +215,7 @@ public class GUI extends JFrame {
         });
         addToPanel(panel, btnLine, constraints, 0,2,2,1);
 
-        //Create Rectangel button
+        //Create Rectangle button
         JButton btnRect = new JButton("Rectangle");
         btnRect.addActionListener(new ActionListener() {
             @Override
@@ -245,10 +248,10 @@ public class GUI extends JFrame {
     }
 
     /**
-     * This method creates the quick colour options at the bottom of the window. The purpose of this buttons is to allow
-     * for easy access to some simple colour without having to select a colour in the colour palette window.
-     * When a button is clicked the 'colour' variable declared at the top of this class is set to the colour that has
-     * been pressed.
+     * This method creates the quick colour options at the bottom of the window. The purpose of this
+     * buttons is to allow for easy access to some simple colour without having to select a colour
+     * in the colour palette window. When a button is clicked the 'colour' variable declared at the
+     * top of this class is set to the colour that has been pressed.
      *
      */
     private void createQuickColours(){

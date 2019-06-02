@@ -1,5 +1,6 @@
 package paint;
 
+import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
@@ -23,7 +24,12 @@ public class SaveFile extends JFrame {
                     for(int i = 0; i<GUI.objects.size(); i++)
                     {
                         Paint pt = GUI.objects.get(i);
-                        pt.writetoFile(b);
+                        if (i == 0) {
+                            pt.writetoFile(b, Color.BLACK, null);
+                        } else {
+                            Paint prevPt = GUI.objects.get(i-1);
+                            pt.writetoFile(b, prevPt.getLineColor(), prevPt.getColor());
+                        }
                         b.newLine();
                     }
                     b.close();
